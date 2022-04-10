@@ -1,0 +1,158 @@
+I)
+
+class Circle():
+    def __init__(self, r):
+        self.radius = r
+
+    def area(self):
+        return self.radius**2*3.14
+
+NewCircle = Circle(8)
+print(NewCircle.area())
+
+II)
+FOR DIFFERENT CLASS PRIVATE AND PUBLIC MEHTOD IS CREATED:
+
+class Base:
+def fun(self):
+print("public method")
+def__fun(self):
+print("private method")
+class Derived(Base):
+def__init__(self):
+base.__init__(self)
+def call_public(self):
+print("\n Inside derived class")
+self.__fun()
+obj1=Base()
+obj1.fun()
+obj2=Derived()
+obj2.call_public()
+
+
+III)
+
+Public
+class spinwell {
+    var a:Int=7
+}
+object access extends App{
+    var e=new spinwell()
+    e.a=8
+    println(e.a)
+}
+
+Protected
+Class spinwell{
+    protected var a:Int=7
+    def show(){
+        a=8
+        println(a)
+    }
+}
+
+Private
+
+class spinwell {
+    private var a:Int=7
+    def show(){
+        a=8
+        println(a)
+    }
+}
+object access extends App{
+    var e=new spinwell()
+    e.show()
+    //e.a=8
+    //println(e.a)
+}
+
+
+
+IV)
+
+class spinfine(var x: Int, var y: Int) {
+
+  def move(dx: Int, dy: Int): Unit = {
+    x = x + dx
+    y = y + dy
+  }
+
+  override def toString: String =
+    s"($x, $y)"
+}
+
+val point1 = new spinfine(2, 3)
+println(point1.x)  // 2
+println(point1)  // prints (2, 3)
+
+
+class spinfine{
+  private var _x = 0
+  private var _y = 0
+  private val bound = 100
+
+  def x = _x
+  def x_= (newValue: Int): Unit = {
+    if (newValue < bound) _x = newValue else printWarning
+  }
+
+  def y = _y
+  def y_= (newValue: Int): Unit = {
+    if (newValue < bound) _y = newValue else printWarning
+  }
+
+  private def printWarning = println("WARNING: Out of bounds")
+}
+
+val spinfine1 = new spinfine
+spinfine1 .x = 99
+spinfine1 .y = 101 // prints the warning
+
+V)
+
+import java.io._
+
+class circle(val xc: Int, val yc: Int) {
+   var x: Int = xc
+   var y: Int = yc
+   
+   def move(dx: Int, dy: Int) {
+      x = x + dx
+      y = y + dy
+      println ("circle x location : " + x);
+      println ("circle y location : " + y);
+   }
+}
+
+class Location(override val xc: Int, override val yc: Int,
+   val zc :Int) extends circle(xc, yc){
+   var z: Int = zc
+
+   def move(dx: Int, dy: Int, dz: Int) {
+      x = x + dx
+      y = y + dy
+      z = z + dz
+      println ("circle x location : " + x);
+      println ("circle y location : " + y);
+      println ("circle z location : " + z);
+   }
+}
+
+object Demo {
+   def main(args: Array[String]) {
+      val loc = new Location(10, 20, 15);
+
+      // Move to a new location
+      loc.move(10, 10, 5);
+   }
+}
+
+object Demo {
+   def main(args: Array[String]) {
+      val loc = new Location(10, 20, 15);
+
+      // Move to a new location
+      loc.move(10, 10, 5);
+   }
+}

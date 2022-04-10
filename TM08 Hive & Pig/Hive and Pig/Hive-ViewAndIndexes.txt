@@ -1,0 +1,43 @@
+I)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <empdata>
+hive> CREATE TABLE IF NOT EXISTS Empdeatils ( empid int, name string,age int 
+salary int, address String)
+COMMENT ‘Employee details’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+hive> LOAD DATA LOCAL INPATH '/home/user/sample.txt'
+OVERWRITE INTO TABLE Empdeatils;
+
+1,Ross,32,Ahemedabad,2000
+2,Heeln,25,Delhi,1500
+3,Chandler,23,Kota,2000
+4,Monika,25,Mumbai,6500
+5,Mike,27,Bhopal,8500
+6,Phoebe,22,MP,4500
+7,Joey,24,Indore,10000
+
+II)
+hive> CREATE VIEW V1 AS
+SELECT * FROM employee
+WHERE Annual sal='', name='',age='';
+
+III)
+hive> CREATE VIEW V2 AS
+SELECT * FROM employee
+WHERE Annual sal='', name='',age='';
+
+IV)
+jdbc:hive2://>LOAD DATA INPATH
+'/data/sample.txt' INTO TABLE
+V!,V2;
+
+V)
+hive> CREATE INDEX inedx_Id ON TABLE employees(empId)
+AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler';
+
+VI)
+DROP INDEX <empId> ON <employees>

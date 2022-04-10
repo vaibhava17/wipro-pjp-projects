@@ -1,0 +1,27 @@
+1. SELECT To_char(sysdate, 'mm-dd-yyyy') AS "Date" FROM   dual 
+
+2. SELECT employee_id, last_name, salary, salary + ( salary * 15.5 / 100 )AS "New salary" FROM   hr.employees  
+
+3. SELECT employee_id, last_name, salary, salary - ( salary * 15.5 / 100 )AS INCREASE FROM   hr.employees  
+
+4. SELECT Initcap(Concat(first_name, last_name))AS Ename FROM   hr.employees WHERE ( Concat(first_name, last_name) ) LIKE 'J%' OR ( Concat(first_name, last_name) ) LIKE 'A%' OR ( Concat(first_name, last_name) ) LIKE 'M%'; 
+
+5. SELECT Initcap(last_name) "Name", Length(last_name)  "Length" FROM   hr.employees WHERE  last_name LIKE '&last_name%' ORDER  BY last_name; 
+
+6. SELECT last_name, Round(Months_between(sysdate, hire_date)) AS months_work FROM   hr.employees ORDER  BY months_work; 
+
+7. SELECT last_name, 'earn salary $' || salary     "Salary", 'monthly but wants $' || salary * 3 "Dream Salaries" FROM   hr.employees; 
+
+8. SELECT last_name, Lpad(salary, 15, '$')AS SALARY FROM   hr.employees; 
+
+9. SELECT last_name, hire_date, To_char(Next_day(Add_months(hire_date, 6), 'MONDAY'), 'fmDay, "the" Ddspth "of" Month, YYYY') REVIEW FROM   hr.employees; 
+
+10. SELECT last_name, hire_date, To_char(hire_date, 'Day') "Day" FROM   hr.employees ORDER  BY To_char(hire_date - 1, 'd'); 
+
+11. SELECT last_name, Nvl(To_char(commission_pct), 'No Commission') COMM FROM   hr.employees; 
+
+12. SELECT last_name, Rpad(last_name, 8) || ' ' || Rpad(' ', salary / 1000 + 1, '*') EMPLOYEES_AND_THEIR_SALARIES FROM   hr.employees ORDER  BY salary DESC; 
+
+13. SELECT job, Decode(job, 'PRESIDENT', 'A', 'MANAGER', 'B', 'SALESMAN', 'C', 'CLERK', 'D', '0')GRADE FROM   scott.emp; 
+
+14. SELECT job, CASE job WHEN 'PRESIDENT'THEN'A' WHEN'MANAGER'THEN'B' WHEN'SALESMAN'THEN'C' WHEN'CLERK'THEN'D' ELSE'0' END AS GRADE FROM   scott.emp;

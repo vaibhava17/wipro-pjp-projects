@@ -1,0 +1,119 @@
+I)
+emp.txt
+CREATE EMP_TABLE(Emp_no int, Emp_name string, Dept_no int, Salary int, Bonus int)[
+(1, pooja, 10, 10000, 2000),(2,medha,20, 20000,1500),(3,pranav,30,15000,2500),(4,sanjay,40,28000,4000)]
+load data to Emp_New_tgt.txt
+wf_load_text_to_SQL
+m_load_text_to_SQL
+
+II)
+Product.dat
+CREATE PRODUCT_DETAILS(ProductID int, ProductName string, Price int, Quantity int)
+[(1,pen,20,4),(2,rubber,30,5),(3,pencil,20,3),(4,book,40,5)]
+delimiter:tab
+SELECT DISTICT NewProduct.dat ProductID from Product.txt
+
+III)
+1) In the Mapping Designer, open a source Qualifier tranformation.
+The edit Transformations dialog box appears.
+2)Select the properties tab.
+3)Click the open button in the Source Filter field.
+4)In SQL Editior dialog box, enter filter.
+Include the table name and port name. Not include WHERE keyword in filtter
+
+Enclose string mapping parameters and variables in string identifier. 
+Alter the date format for datetime mapping parameters and variables when necessary
+5)click ok
+
+IV)
+SRC->SQ->RTR->TGT
+
+BEFORE creating mapping please create a list file with all the source files
+i)Emp_1_2_3.txt has file contain Emp1.txt, Emp2.txt, Emp3.txt
+ii)Source properties check add "Currently Processed File Name"
+iii)In router create 3 groups like 1, 2, 3 and default as e
+iv)link all columns to respect targets
+In session Properties select file type as 'Indirect' and file name as Emp_1_2_3.txt
+
+V)
+i)import data from EMP table
+ii)import the target table"deptno"in the mapping
+iii)import data from emp table having dept no=30
+iv)load the data by mapping the data into new file EMP_new_tgt
+
+ VI)
+i)import data from EMP table
+ii)import the target table"deptno"in the mapping
+iii)import data from emp table having dept no=10, dept no=20,dept=30
+iv)load the data by mapping the data into new file EMP10.txt, EMP20.txt, EMP30.txt
+
+VII)
+i)import NewProduct.dat file
+ii)load that file to TgtNewprod.txt
+There are condition while loading data
+i)if quantity column having value null or zero then load that data
+ii)if column productName having space then load that data
+
+VIII)
+i)import data from EMP_1_2_3.txt
+ii)load data from EMP_1_2_3.txt
+v_dept=0_dept
+i_dept=<input from prev transoformation>
+o_dept=v_dept
+v_Sal=||F(v_dept=i_dept, sal+v_sal,sal)
+out_sal=v_Sal
+
+IX)
+i)import data from  Emp_1_2_3.txt 
+ii) Load the dta from emp table
+Sorting data:
+select data from table and make the column u want to sort as key column
+SELECT * FROM EMP_1_2_3.txt
+ORDER BY Deptno ASCE;
+SELECT * FROM EMP_1_2_3.txt
+ORDER BY Salary DES;
+
+X)
+i)use property in source Qualifier to select distint record
+ii)Select all ports as group by key
+iii)use sorter and use the sort Distinct property for getting distinct value.
+iv)use Expression and Dilter trnasformation to identify and remove duplicate of your sorted data.
+v)use filter trasnformation only to pass IS_DUP=0 
+if IS_DIP>0 that means those are duplicate entries.
+vi)add ports to mapping 
+vii)load data using mapping after removing duplicate data
+
+XI)
+i)import data from EMP_NEW.txt 
+ii)load all data from emp table
+ii)follow query 
+SELECT JOB_ID, AVG(SALARY), MAX(SALARY),MIN(SALARY)
+FROM EMP_NEW
+WHERE DEPT_NO="30"
+GROUP BY JOB_ID;
+
+XII)
+i) import NewProduct.dat
+ii)Load data from above file
+iii)query for dealprice
+select from NewProduct
+where dealprice=(price_product1+price_product2+...price_productn)*qty of product;
+iv)load new data of dealprice into ProductSales.dat
+
+XIII)import EMP_NEW.txt with structure Empno, Firstname, lastName, Jobname, Deptno, salary , comm
+ii)load this table with inputs Salses, purchase, marketing
+select * from emp_new.txt
+where Tname=first_name+last_name;
+
+SELECT *FROM EMP_NEW.TXT
+WHERE TSAL=SALARY*COMM;
+
+SELECT *FROM EMP_NEW.TXT
+WHERE TJOB=LOWER(JOBID);
+
+XIV)
+i) import NewProduct.dat
+ii)return quantity column contain null values 
+iii)return key values column
+iv) if value==null()
+print '*'

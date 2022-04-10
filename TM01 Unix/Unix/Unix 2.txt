@@ -1,0 +1,4 @@
+# mkdir newdir
+# ls -l
+
+# chmod u+rwx newdir

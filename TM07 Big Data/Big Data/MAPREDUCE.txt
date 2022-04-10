@@ -1,0 +1,238 @@
+I)
+1001,25,23000,IT,clerk
+1004,27,27000,HR,Manager
+1002,23,21000, IT, Assistant
+1003,28,33000,IT,Clerk
+1006,31,29000,sales, Manager
+1007,41,38000, HR, Clerk
+1009, 27, 21000, Sales, Manager
+
+II)
+<k: employee name, v:salary>
+dept1=the department treated for increment of salary
+Actualsal1=salary consider for dept1
+if(v(dept1)==IT).salary=(Actualsal*10/100)+Actualsal1
+
+elseif:
+dept2=the department treated for increment of salary
+Actualsal2=salary consider for dept2
+if(v(dept1)==HR).salary=(Actualsal2*12/100)+Actualsal2
+
+elseif:
+dept=the department treated for increment of salary
+Actualsal=salary consider for dept
+if(v(dept)==sales).salary=(Actualsal*5/100)+Actualsal
+
+III)
+MAPPER CLASS FOR AVERAGE SAL OF EMPLOYEE IN EACH DEPARTMENT
+
+import java.io.IOException;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+public class AverageSalaryPerDepartmentMapper extends Mapper<Object, Text, Text, CustomAverageTuple> {
+private CustomAverageTuple averageTuple = new CustomAverageTuple();
+private Text departmentName = new Text();
+@Override
+public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+String data = value.toString();
+String[] field = data.split(",", -1);
+double salary = 0;
+if (null != field && field.length == 9 && field[7].length() >0) {
+salary=Double.parseDouble(field[7]);
+averageTuple.setAverage(salary);
+averageTuple.setCount(1);
+departmentName.set(field[3]);
+context.write(departmentName, averageTuple);
+}
+}
+}
+
+IV)
+import java.io.IOException;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.path;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.lib.input.FileInput
+format;
+import
+org.apche.hadoop.mapreduce.lib.output.FileOut
+putFormat;
+public final class empmain{
+public static void main(string[] args)throws
+illegalArgumentException, IOException,
+ClassNotFoundException, InterruptedException
+{
+Configuration conf= new Configuration();
+Job job=Job.getInstance(conf,"emain");
+job.setJarByClass(empmap.class);
+job.setMapperClass(empmap.class);
+//job.setNumReduceTasks(0);
+job.setReducerClass(empreduce.class);
+//job.setmapOutputKeyClass(Text.class);
+////job.setReducerClass(Empreduce.class);
+//job.setMapOutputKeyClass(Text.class);
+job.setOutputValueClass(Text.class);
+FileInputFormat.addInputpath(job,newpath(args[0]));
+FileInputFormat.addInputpath(job,newpath(args[1]));
+System.exit(job.waitForCompletion(true)?0:1);
+}
+}
+
+V)
+mport java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.FloatWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+public static class MapperClass extends
+  Mapper<LongWritable, Text, Text, FloatWritable> {
+ public void map(LongWritable key, Text empRecord, Context con)
+   throws IOException, InterruptedException {
+  String[] word = empRecord.toString().split("\\t");
+  String ename = word[3];
+  try {
+   Float salary = Float.parseFloat(word[8]);
+   con.write(new Text(ename), new FloatWritable(salary));
+  } catch (Exception e) {
+   e.printStackTrace();
+  }
+ }
+}
+
+public static class ReducerClass extends
+  Reducer<Text, FloatWritable, Text, Text> {
+ public void reduce(Text key, Iterable<FloatWritable> valueList,
+   Context con) throws IOException, InterruptedException {
+  try {
+   Float total = (float) 0;
+   int count = 0;
+   for (FloatWritable var : valueList) {
+    total += var.get();
+    System.out.println("reducer " + var.get());
+    count++;
+   }
+   }
+ }
+}
+
+public static void main(String[] args) {
+ Configuration conf = new Configuration();
+ try {
+  Job job = Job.getInstance(conf, "FindTotalSalary");
+  job.setJarByClass(AverageAndTotalSalaryCompute.class);
+  job.setMapperClass(MapperClass.class);
+  job.setReducerClass(ReducerClass.class);
+  job.setOutputKeyClass(Text.class);
+  job.setOutputValueClass(FloatWritable.class);
+  // Path p1 = new Path(args[0]);
+  // Path p2 = new Path(args[1]);
+  // FileInputFormat.addInputPath(job, p1);
+  // FileOutputFormat.setOutputPath(job, p2);
+  Path pathInput = new Path(
+    "hdfs://192.168.213.133:54310/user/hduser1/employee_records.txt");
+  Path pathOutputDir = new Path(
+    "hdfs://192.168.213.133:54310/user/hduser1/testfs/output_mapred00");
+  FileInputFormat.addInputPath(job, pathInput);
+  FileOutputFormat.setOutputPath(job, pathOutputDir);
+  System.exit(job.waitForCompletion(true) ? 0 : 1);
+ } catch (IOException e) {
+  e.printStackTrace();
+ } catch (ClassNotFoundException e) {
+  e.printStackTrace();
+ } catch (InterruptedException e) {
+  e.printStackTrace();
+ }
+
+}
+}
+
+VI)
+mport java.io.IOException;
+
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.FloatWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+
+import org.apache.hadoop.mapreduce.Job;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Reducer;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+
+public static class MapperClass extends
+  Mapper<LongWritable, Text, Text, FloatWritable> {
+ public void map(LongWritable key, Text empRecord, Context con)
+   throws IOException, InterruptedException {
+  String[] word = empRecord.toString().split("\\t");
+  String dept = word[3];
+  try {
+   Float salary = Float.parseFloat(word[8]);
+   con.write(new Text(dept), new FloatWritable(salary));
+  } catch (Exception e) {
+   e.printStackTrace();
+  }
+ }
+}
+
+public static class ReducerClass extends
+  Reducer<Text, FloatWritable, Text, Text> {
+ public void reduce(Text key, Iterable<FloatWritable> valueList,
+   Context con) throws IOException, InterruptedException {
+  try {
+   Float total = (float) 0;
+   int count = 0;
+   for (FloatWritable var : valueList) {
+    total += var.get();
+    System.out.println("reducer " + var.get());
+    count++;
+   }
+   Float avg = (Float) total / count;
+   String out = "Total: " + total + " :: " + "Average: " + avg;
+   con.write(key, new Text(out));
+  } catch (Exception e) {
+   e.printStackTrace();
+  }
+ }
+}
+
+public static void main(String[] args) {
+ Configuration conf = new Configuration();
+ try {
+  Job job = Job.getInstance(conf, "FindAverageAndSalary");
+  job.setJarByClass(AverageAndTotalSalaryCompute.class);
+  job.setMapperClass(MapperClass.class);
+  job.setReducerClass(ReducerClass.class);
+  job.setOutputKeyClass(Text.class);
+  job.setOutputValueClass(FloatWritable.class);
+  // Path p1 = new Path(args[0]);
+  // Path p2 = new Path(args[1]);
+  // FileInputFormat.addInputPath(job, p1);
+  // FileOutputFormat.setOutputPath(job, p2);
+  Path pathInput = new Path(
+    "hdfs://192.168.213.133:54310/user/hduser1/employee_records.txt");
+  Path pathOutputDir = new Path(
+    "hdfs://192.168.213.133:54310/user/hduser1/testfs/output_mapred00");
+  FileInputFormat.addInputPath(job, pathInput);
+  FileOutputFormat.setOutputPath(job, pathOutputDir);
+  System.exit(job.waitForCompletion(true) ? 0 : 1);
+ } catch (IOException e) {
+  e.printStackTrace();
+ } catch (ClassNotFoundException e) {
+  e.printStackTrace();
+ } catch (InterruptedException e) {
+  e.printStackTrace();
+ }
+
+}
+}

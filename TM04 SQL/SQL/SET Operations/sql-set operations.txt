@@ -1,0 +1,5 @@
+1. SELECT DISTINCT job_id, Sum(CASE department_id WHEN 10 THEN salary END)    "dept 10", Sum(CASE department_id WHEN 20 THEN salary END)    "dept 20", Sum(CASE department_id WHEN 30 THEN salary END)    "dept 30", Sum(salary) AS "Total salary" FROM   hr.employees GROUP  BY job_id;  
+
+2. SELECT department_id, ' ' AS job_id, Sum(salary)AS "total salary" FROM   hr.employees GROUP  BY department_id UNION SELECT department_id, job_id, Sum(salary) FROM   hr.employees GROUP  BY department_id, job_id;  
+
+3. SELECT job, deptno FROM   (SELECT job, deptno, 2 AS o FROM   scott.emp WHERE  deptno = 10 UNION SELECT job, deptno, 1 FROM   scott.emp WHERE  deptno = 20 UNION SELECT job, deptno, 3 FROM   scott.emp WHERE  deptno = 30) x ORDER  BY o;

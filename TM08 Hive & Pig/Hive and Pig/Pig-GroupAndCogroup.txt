@@ -1,0 +1,11 @@
+I)
+grunt> group_data = GROUP Order_details by itemID;
+
+II)
+grunt> Dump group_data Order_details;
+
+III)
+grunt> group_multiple = GROUP Order_details by (itemID, qty);
+
+IV)
+grunt> cogroup_data = COGROUP Order by orderDate, Order_details by ItemId;

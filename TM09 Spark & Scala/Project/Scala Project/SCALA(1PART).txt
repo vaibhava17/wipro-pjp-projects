@@ -1,0 +1,27 @@
+#READ THE DATA FROM FILE
+
+object CSVDemo extends App {
+    println("first_name, last_name, mailid,product, price, quantity,location")   
+     val bufferedSource = io.Soure.fromFile("/src/main/resources/CustomerOrders.csv")
+    for (line <- bufferedSource.getLines) {
+        val cols = line.split(",").map(_.trim)
+        // do whatever you want with the columns here
+        println(s"${cols(0)}|${cols(1)}|${cols(2)}|${cols(3)}
+|${cols(4)}|${cols(5)}|${cols(6)}|${cols(7)}")
+    }
+    bufferedSource.close
+}
+
+#TOTAL PRODUCT AND THEIR TOATAL PRICE
+item_num=io.Source.fromFile("/src/main/resources/CustomerOrders.csv")
+item_num = int(input("Please enter the number of items in  list.\n"))
+item_list = [str(input("What is the item #" + str(count + 1) + " on your list?\n")) for count in range(item_num)]
+item_price = sum(int(input("Enter the price of the item \n")) for i in range(item_num))
+item_quan = sum(int(input("What is the quantity of item #" + str(count + 1) + " that you bought?\n")) for count in range(item_num))
+subtotal = sum(int(item_price * item_quan)for i in range(item_num))
+print ("The subtotal is...")
+print (subtotal)
+
+#TOTAL REVENUE BY COUNTRY
+
+val aggdf = CustomerOrder.groupBy('County').agg(Map("product"->"count","price"->"subtotal"))

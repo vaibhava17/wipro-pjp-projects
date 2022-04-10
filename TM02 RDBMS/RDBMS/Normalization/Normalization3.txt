@@ -1,0 +1,6 @@
+EMP table has composite primary key --> PROJECT_NO,EMPNO. 
+The non-key attribute depends on NO_OF_DAYS,
+So, to bring the given table in Second Normal Form, we need to  break the table as followed:
+
+Table 1 ---> EMPNO, PROJECT_NO, CUSTOMERNAME
+TABLE 2 ---> PROJECT_NO, NO_OF_DAYS

@@ -1,0 +1,25 @@
+CREATE DATABASE BANK1 AND CREATE TABLES IN THAT DATABASE
+
+
+create database bank1;
+use bank1;
+
+create table account(name(varchar(50), accountno varchar(10),dob varchar(10), address varchar(100), phone varchar(100), ob amt);
+show tables;
+
+create table amount(name varchar(50, accountno varchar(10), balance int(10));
+
+describe amount;
+describe account;
+
+use bank1;
+select * from account;
+
+select * from amount;
+
+INSERT DATA INTO TABLE
+
+INSERT INTO account((name, accountno, dob, address, phone, ob),values(pooja, 1234, 16/04/2001, solapur, 1000),
+(vinayak, 2356, 23/07/2000, pune, 2000),(sayli, 4532,1/2/2002,2300),(suhani, 8745,24/06/2004 , 1500));
+
+INSERT INTO amount((name, accountno, balance),values(pooja, 1234, 50000),(vinayak,2356,65000),(sayli,4532,48000),(suhani,8745,73000));

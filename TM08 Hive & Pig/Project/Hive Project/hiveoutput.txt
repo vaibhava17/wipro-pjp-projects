@@ -1,0 +1,6 @@
+#LOADING OUTPUT IN TABLE
+
+INSERT INTO NyseMinMax(AdjClose)
+     Select n.ticker, n.month, n.Adjclose 
+     from NYSE 
+     join NyseMinMax N on (N.NYSE = A.Adjclose);

@@ -1,0 +1,27 @@
+#LOAD DATA INTO TEXT FILE
+
+grunt> customers = LOAD 'NYSE_daily.txt' USING PigStorage(',');
+
+grunt> NYSE_daily = LOAD 'hdfs://localhost:9000/pig_data/NYSE_daily.txt' USING PigStorage(',')
+   as (Ticker string, Date Date,
+Open Decimal(10,2), Open Decimal(10,2), High Deciaml(10,2), Low Decimal(10,2)
+Close Decimal(10,2), Volume Int, AdjClose Decimal(10,2));
+
+#AVERAGE VOLUME FOR EACH MONTH
+grunt>Average_Volume = Group NYSE_daily All;
+
+Volume_avg = foreach Average_Volume Generate
+   ( NYSE_daily.Month,NYSE_detail.Volume), AVG(NYSE.VOLUME); 
+grunt> Dump NYSE_volume_avg;
+
+#EXTRACT COLUMNS IN FILE
+grunt>dataFrame.select("Ticker").rdd.map(r => r(0)).collect()
+grunt>dataFrame.select("month").rdd.map(r => r(0)).collect()
+grunt>dataFrame.select("AvgVolume").rdd.map(r => r(0)).collect()
+
+#SAVE OUTPUT FILE IN HDFS DIRECTORY
+
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/Pig_Data 
+$ cd $HADOOP_HOME/bin
+$ hdfs dfs -cat hdfs://localhost:9000/pig_data/NYSE_daily.txt

@@ -1,0 +1,3 @@
+# zip -r foo.zip
+
+# unzip myfile.zip

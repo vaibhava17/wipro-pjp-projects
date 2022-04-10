@@ -1,0 +1,21 @@
+#MAXIMUM ADJCLOSE FOR EACH TICKER
+hive> SELECT month, MAX(AdjClose)
+> FROM NYSE
+> WHERE AdjClose != $445,000
+> AND (ticker = NySE:BSE OR  ticker = NySE:A OR ticker = NySE:RH OR ticker = NySE:CHWY OR ticker = NySE:GMY)
+> GROUP BY MONTH;
+AUGUST,
+SEPTEMBER,
+OCTOBER,
+NOVEMBER;
+
+#MINIMUM ADJCLOSE FOR EACH TICKER
+hive> SELECT month, MIN(AdjClose)
+> FROM NYSE
+> WHERE AdjClose != $3.12
+> AND (ticker = NySE:BSE OR  ticker = NySE:A OR ticker = NySE:RH OR ticker = NySE:CHWY OR ticker = NySE:GMY)
+> GROUP BY MONTH;
+AUGUST,
+SEPTEMBER,
+OCTOBER,
+NOVEMBER;

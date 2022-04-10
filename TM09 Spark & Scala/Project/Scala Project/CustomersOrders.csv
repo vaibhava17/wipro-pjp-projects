@@ -1,0 +1,10 @@
+FirstName,LastName,EmailAddress,ProductName,Price,Quantity,County
+"Harit","Dhiman","harit.dhiman@wipro.com","iphone",1000,1,USA
+"Harit","Dhiman","harit.dhiman@wipro.com","iMac",600,2,USA
+"Harit","Dhiman","harit.dhiman@wipro.com","iwatch",800,3,USA
+"Amit","Mishra","amit.misra@wipro.com","iMac",600,3,India
+"Amit","Mishra","amit.misra@wipro.com","iphone",1000,2,India
+"Sunita","Rao","sunita.rao@wipro.com","iphone",1000,3,UK
+"Sunita","Rao","sunita.rao@wipro.com","iwatch",800,2,UK
+"Prakash","P","prakash.p@wipro.com","iphone",1000,3,India
+"Prakash","P","prakash.p@wipro.com","itunes",200,5,India

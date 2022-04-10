@@ -1,0 +1,114 @@
+I)
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/Pig_Data 
+
+II)
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/Order.txt' 
+   USING PigStorage(',')
+   as ( id:int, c_id:chararray, o_date:int );
+where as our Order.txt contain data
+
+101,C001,10/12/2015
+102,C002,11/10/2015
+103,C003,15/12/2015
+104,C001,15/12/2015
+
+III)
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/Order_details.txt' 
+   USING PigStorage(',')
+   as ( id:int, c_id:chararray, o_date:int );
+where as our Order_details.txt contain data
+
+101,Item1,10,2500
+101,Item2,2,800
+102,Item3,5,400
+102,Item1,5,500
+103,Item1,10,500
+104,Item3,3,400
+
+IV)
+$ cd $HADOOP_HOME/bin
+$ hdfs dfs -cat hdfs://localhost:9000/pig_data/Order_details.txt
+
+V)
+$ cd $HADOOP_HOME/bin 
+$ hdfs dfs -put /home/Hadoop/Pig/Pig_Data/Order_details.txt dfs://localhost:9000/pig_data/
+
+VI)
+hdfs dfs -ls 'hdfs://localhost:9000/pig_Output/'
+Found 2 items
+rw-r--r-   1 Hadoop supergroup          0 2015-10-05 13:03 hdfs://localhost:9000/pig_Output/_SUCCESS
+rw-r--r-   1 Hadoop supergroup        224 2015-10-05 13:03 hdfs://localhost:9000/pig_Output/part-m-00000
+
+VII)
+pig> CREATE TABLE IF NOT EXISTS Empdeatils ( OrderID int, CustID string, OrderDate int)
+COMMENT ‘Order details’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+pig> LOAD DATA LOCAL INPATH '/home/user/OrderDetail';
+OVERWRITE INTO TABLE Orderdetails;
+
+101,C001,10/12/2015
+102.C002,11/10.2015
+103,C003,15/12/2015
+104,C001,15/12/2015
+
+VIII)
+pig> CREATE TABLE IF NOT EXISTS Empdeatils ( OrderID int, ItemId string, Qty int, Rate int))
+COMMENT ‘Order details’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+pig> LOAD DATA LOCAL INPATH '/home/user/OrderDetail';
+OVERWRITE INTO TABLE Orderdetails;
+
+101,Item1,10,2500
+101,Item2,2,800
+102,Item3,5,400
+102,Item1,5,500
+103,Item1,10,500
+104,Item3,3,400
+
+IX)
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/student_data.txt' 
+   USING PigStorage(',')
+   as ( OrderId: int, Customer_id : int, OrderDate: int);
+X)
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/order.txt' 
+   USING PigStorage(',')
+   as ( Customer_id:int,Order_id: int, ItemId : int, Qty: int, Rate: int
+   );
+
+XI)
+
+runt> STORE Order.tx INTO ' hdfs://localhost:9000/pig_Output/ ' USING PigStorage (',')
+
+XII)
+FIRST TO STORE DATA INTO DATABASE
+hdfs dfs -ls 'hdfs://localhost:9000/pig_Output/'
+THEN VERIFY THAT DATA 
+$ hdfs dfs -cat 'hdfs://localhost:9000/pig_Output/part-m-00000'
+
+XIII)
+grunt> Dump Order.txt To Order_details.txt
+
+XIV)
+grunt> describe order to order_details
+
+XV)
+grunt> explain Order_deatils;
+
+XVI)
+grunt> illustrate Order_details;
+
+
+
+
+

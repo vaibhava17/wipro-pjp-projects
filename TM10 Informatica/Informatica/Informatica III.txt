@@ -1,0 +1,169 @@
+I) import EMP_SAL.txt 
+import structure of emp_sal with (empno, firstname, lastname, deptno, dname, salary, grade)
+take salary column as key column fetch all values from salary column
+Select rank transformation
+Enter transformation name “rnk_salary”
+Select Create button
+connect all ports to source qualifier to rank transformation
+
+1)Select properties menu
+2)Select “Top” option from the Top/Bottom property
+3)Enter 3 in the number of ranks
+and you get top 3 emp from table
+
+II)
+import ProductSales.dat
+load the structure of product sale data
+select rank transformation
+Enter transformation name"rank_dealprice"
+select create button
+connect all ports to source qualifier to rank transformation
+1)Select properties menu
+2)select "top "as well as"bottom " from the Top/Bottom property
+3)Enter 3 in the number of ranks
+create 2 different file and load this data into that file
+
+III)
+i)Create a mapping having source "EMP" and target "EMP_target"
+ii) select transformation menu and select create union
+iii) Select router transformation. Enter name for transformation "rtr_deptno_10"
+select Create option
+iv)then drag and drop column from socurce qualifier to router transformation
+v)select group tab
+enter group "deptno_20"
+click on the group filter condition
+vi)enter filter condition deptno=20 and select OK button
+vii)connect the ports the group deptno_20 of router transformation to target table ports
+
+SAME PROCEDURE FOR DEPT 10 AND 30
+AND LOAD THE DATA OF DEPT10 IN EMP_10.TXT AND DEPT30 IN EMP_30.TXT
+
+IV)
+i)create a mapping having source "productSales.dat" and target "productsale_target
+ii)select transformation menu and select create union
+iii)select router transformation. Enter name for transformation "rtr_productfile1" select create option
+iv)then drag and drop column from source qualifier to router transformation
+v)select group tab enter group "dealprice<1000"
+click on the group filter conditon
+vi)enter filter conditon dealprice<1000 and select OK button
+vii)connect the ports and the group dealprice<1000 of router transformation to target table ports
+
+SAME PROCEDURE FOR DEALPRICR BETWEEN 1000 AND 2500
+AND DEALPRICE BETWEEN 2500 AND 5000
+AND LOAD DATA INTO PRODUCTFILE2 AND PRODUCTFILE3 RESP.
+
+V)
+i)Create a mapping having source "EMP_10,EMP_20,EMP_30" and target "EMP_target"
+ii) select transformation menu and select create union
+iii)import target file into EMP_10_20_30.txt
+
+VI)
+i) Create a new target table EMP_DEPTNAME in the database using the below script and import the table in Informatica targets.
+ii) create new mapping and import source table "emp"and "dept" and target table
+iii)from transformation menu
+select joiner transformation
+enter transformation name "jnr_emp_dept"
+select create option
+iv)drag and drop all the columns from bothe the source qualifiers to joiner transformation
+v)double click on joiner transformation and edit transformation window
+select condition tab
+click on add new conditon icon
+select deptno in master and detail columns list
+vi)In same window
+select properties tab
+select normal join as join type
+select ok button
+vii)double click on joiner transformation to open edit window
+select ports tab
+select any column of a particular sourcre
+select ok
+viii)link the relevant columns from joiner transformation to target table
+
+VII)
+i) Create a new target table EMP_DEPTNAME in the database using the below script and import the table in Informatica targets.
+ii) create new mapping and import source table "emp"and "dept" and target table
+iii)from transformation menu
+select joiner transformation
+enter transformation name "full_out_jnr_emp_dept"
+select create option
+iv)drag and drop all the columns from bothe the source qualifiers to joiner transformation
+v)double click on joiner transformation and edit transformation window
+select condition tab
+click on add new conditon icon
+select deptno in master and detail columns list
+vi)In same window
+select properties tab
+select full outer join as join type
+select ok button
+vii)double click on joiner transformation to open edit window
+select ports tab
+select any column of a particular sourcre
+select ok
+viii)link the relevant columns from  outer joiner transformation to target table
+
+VIII)
+import Employee.dat file
+
+ i) Create a new target table EMP_DEPTNAME in the database using the below script and import the table in Informatica targets.
+ii) create new mapping and import source table "emp"and "mgr" and target table
+iii)from transformation menu
+select joiner transformation
+enter transformation name "jnr_emp_mgr"
+select create option
+iv)drag and drop all the columns from bothe the source qualifiers to joiner transformation
+v)double click on joiner transformation and edit transformation window
+select condition tab
+click on add new conditon icon
+select deptno in master and detail columns list
+vi)In same window
+select properties tab
+select normal join as join type
+select ok button
+vii)double click on joiner transformation to open edit window
+select ports tab
+select any column of a particular sourcre
+select ok
+load this data into EmployeDetails.txt
+viii)link the relevant columns from joiner transformation to target table
+
+IX)
+i)Create a new mapping with EMP as source and EMP_DEPTNAME as target
+ii)create a new transformation using transformation menu
+select lookup transformation as the transformation
+enter transformation name"lkp_dept"
+select create option
+iii) This will open lookup table window
+select source button
+select DEPT table
+select OK button
+iv)Lookup transformation will be created with the columns of DEPT table,select done button there
+v)drag and drop DEPTNO column from source qualifier to the lookup transformation , this will create 
+a new column DEPTNO1 in lookup transformation. link DNAME colu from lookup transformation to 
+target table
+vi)double click on lookup trnasformation and edit the transformation
+select codition tab
+set the codition column to DEPTNO=DEPTNO1
+select Ok button
+vii)link rest of the columns from source qualilfier to the target table
+
+ X)
+i) open the mapping which is having the transformation, here we are making the rank transfroamtion reusable.
+ii)double click on the transformation to open edit transformation window.
+select deptid column . through lookup transformation link column to target table.
+Select trasnformation tab in the window.
+select the check box to make transformation reusable.
+select yes in the confiramtion window.
+select OK in the transformation properties window.
+
+XI)
+i)import the employee.dat lookup source to the model repository.
+it load the data of employee with empID Ename, Salary, MgrID, Deptno
+ii) create the unconnected lookup transformation
+create a reuasable glat file lookup transdfroamtion with employee data objects  Return First Row on multiple matches.
+iii) define lookup transformation ports on the ports tab in properties view
+iv)configure the lookup transformation return port
+it returns employeedetails source file with the source file.
+add lookup conditon click the lookup column 
+employee.dat file=employeedetail.dat file
+v)create an expression transformation that returns mgr data to flat file
+(:LKP.employee_details_lookup(mgr)*employee.dat)

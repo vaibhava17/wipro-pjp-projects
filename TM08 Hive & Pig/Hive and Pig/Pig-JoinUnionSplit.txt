@@ -1,0 +1,17 @@
+I)
+grunt> coustomer_orders = JOIN customers BY custid,qty, itemID orders BY customer_id
+
+II)
+grunt> outer_left = JOIN customers BY custid, qty, itemID LEFT OUTER, orders BY customer_id;
+ 
+III)
+grunt> outer_right = JOIN customers BY custid, qty,itemID RIGHT, orders BY customer_id;
+
+IV)
+grunt> order = UNION Orders, Order_details;
+
+verify details of order dataset
+grunt> Dump order;
+
+V)
+SPLIT Order_details into order1 if Rate>500, order2 if (Rate<500);

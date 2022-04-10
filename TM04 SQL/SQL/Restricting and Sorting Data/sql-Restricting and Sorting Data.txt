@@ -1,0 +1,31 @@
+1. SELECT Ename,Sal,Comm FROM Emp WHERE Comm is NOTNULL and ORDER BY (Sal,Comm) DESC;
+
+2. SELECT DISTINCT Job_id FROM Emp;
+
+3. SELECT Emp_id "Emp#",Ename "Employee", Job_id "Job", hire_date "Hire Date" FROM Emp;
+
+4. SELECT Last_name||' , '||Job_id "Employee AND Title" FROM Emp;
+
+5. SELECT Ename||','||Job_id||','||Hire Date||','||MGR.Name THE_OUTPUT FROM Emp;
+
+6. SELECT Ename,Job_id,Hire Date FROM Scott.Emp ORDER BY Hire Date;
+
+7. SELECT Ename,Dept_id FROM Emp WHERE Dept_id IN(20,30) ORDER BY Ename;
+
+8. SELECT Last_name "Employee", Sal "Monthly Salary" FROM Emp WHERE (Sal BETWEEN 2000 AND 3000) AND Dept_id IN (20,30);
+
+9. SELECT Last_name,Hire Date FROM Emp WHERE Hire Date LIKE '%81';
+
+10. ACCEPT amt NUMBER PROMPT 'Ammount: 'SELECT Ename,Sal FROM Emp WHERE Sal>amt;
+
+11. SELECT Last_name ,Job_id FROM Emp WHERE Manager_id is NULL;
+
+12. SELECT O.Manager_id, P.Emp_id, P.Last_name, P.Sal, P.Dept_id FROM Emp P, Manager O WHERE O.Manager_id = P.Manager_id ORDER BY O.Manager_id;
+
+13. SELECT Emp_id, Last_name, Sal, Dept_id FROM Emp WHERE Manager_id = & Manager ORDER BY ( Last_name, Sal, Emp_id);
+
+14. SELECT Last_name FROM Emp WHERE Last_name LIKE '_ _ A%';
+
+15. SELECT Last_name FROM Emp WHERE Last_name LIKE '%A%' AND Last_name LIKE '%S%';
+
+16. SELECT Last_name, Jod_id, Sal FROM Emp WHERE Job_id = 'CLERK' AND Sal IN (800,950,1300);

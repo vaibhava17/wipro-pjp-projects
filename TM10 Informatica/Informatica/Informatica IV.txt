@@ -1,0 +1,218 @@
+I)
+i)create target table with given script
+ii)Import the table in informatica as target table
+iii)Create a new mapping import productSales.dat file
+product_SEQUENCE target table
+iv)create transformation mapping
+select sequence trnasformation as the type
+enter transformation name "ORD_productid"
+select create option
+v)sequence generator transformation willbe created, select the done option
+vi)link the NEXTVAL COLUMN of the sequence generator to SNO column in target
+vii)link the otehr coulmns from source qualifier transformation to the target table
+viii)doble click on the sequence generator to open property window 
+select properties tab
+enter the properties with start value=1, leave the rest properties as default
+select ok button
+
+II)
+i) Drag the source and connect to an expression transformation
+ii)Add the next value of a sequence genrator to expression transformation
+iii)In expression trnasformation make two port, one is "odd" and one is"even"
+iv)connect a router transformation to expression
+make two group in router
+and write the condition
+v)then send the two group to different targets
+and create workflow
+
+III)
+i)open mapping "m_emp_emp_target" in mapping designer.
+ii)Double click on the source Qualifier transformation "SQ_EMP" It will open edit transformation
+property window for it. 
+click on the properties tab
+click on SQL query modify option that will open an sql edit window
+iii)enter the query SELECT EMPNO, ENAME, JOB, MGR FROM EMP
+SELECT OK BUTTON
+iv)select ports tab from the menu
+under ports tab, we see ports keep ports EMPNO, ENAME, JOB, MGR ,salary
+v)select conditon for salary >5000;
+click on ok
+give another conditon sort data by DNO
+DNO ASCE;
+CLICK OK THEN FETCH DATA FROM TABLE
+load that data into target
+
+IV)
+i)create mapping . go to mapping menu |click on create| Enter the neme as m_update_strategy.
+ii)click on ok, drag and drop source EMP table and target table into the mapping window workspace
+iii)to update strategy create lookup transformation  to create transformation click on create
+select transformation type as Lookup and name it as LKP_RECORD_AVAILABILITY
+select target SCD1 CLICK ON OK
+drag and drop empNo port form SQ_EMP to Lookup transformation table.
+rename EMPNO1 to iIN_EMPNO
+double click on lookup transformation table and click on conditions tab to add new condition
+create new condition
+iv)create expression transformation go to transformation|click on create|select type as Expression adn enter name for expression
+transformationo as EXP_update ,EXP_insert,EXP_rejecting rows
+v)drag and drop Empno, Ename, job , sla , deptno from source qualifier transformaiton to expression transformation
+vi)click on port tab add new port create new_record_insert 
+For NEW_RECORD add IIF(ISNULL(EMPKEY) ‘TRUE’, ‘FALSE’).
+For CHANGED_RECORD add IIF((NOTISNULL(EMPKEY) AND (JOB != PREV_JOB) OR (SAL != PREV_SAL)),‘TRUE’,’FALSE’)
+Click on OK button.
+
+V)
+i)create a source file for emp_details.txt
+with details EMPNAME, MONTH, TRANSPORT, HOTEL, FOOD
+CREATE mapping with the name M_data_pivote
+drop source and target defination 
+ii)create transformation type normalize
+iii)double click on normalize transformation select normalize tab
+connect ports target(EMPNAME->MONTH->EXPENSES)
+
+VI)
+i)create source file into mapping and load the data into it.
+ii)Create a new filter named fil_ODS_CUSTOMER_ACTIVE to the Source Qualifier with the property NOT (ISNULL (DATE_CLOSED)) AND CANCELED = 0.
+iii)Now Add a lookup transformation in the designer as seen below with name as lkp_CUSTOMER :
+iv)specify lookup table as customer table
+v)Double click on the header of lkp_CUSTOMER to open the edit menu. Under Condition tab set the lookup condition as CUST_ID = CUST_NO.
+vi)In the Properties tab change the Connection Information to $Source and click on OK to save the transformation:
+vii)Link the lkp_CUSTOMER ports to ODS_CUSTOMER_ACTIVE ports to complete the required transformation where  ODS_CUSTOMER_ACTIVE is the required target file:
+viii)create work flow to get iconic map
+
+VII)
+i)Launch the Informatica Workflow Manager.
+ii)In the Repositories list, select the Informatica repository. The recommended repository name is Siebel_DW_Rep_Teradata for Teradata databases. This value should match the value you entered in Setting Up the Informatica Server.
+iii)In the menu bar, select Repository > Connect.
+iv)Log in using the username and password you entered in Setting Up the Informatica Server. Click Connect.
+Configure the relational connections.
+a)In the menu bar, select Connections > Relational.
+b)In the Objects window, select Olap_Teradata, and then click Edit.
+c)Edit the User Name, Password, Database Name, and Data Source Name, and then click OK.
+d)If you cannot use the existing source connection (the default source connection is for an Oracle database), you need to create a new relational connection and then use the Replace Connections functionality (Connections > Replace) to replace the relational database connection.
+iv)Click Close to close the Relational Connection Browser.
+v)Configure the external loader connection.
+vi)In the menu bar, select Connections > Loader.
+vii)In the Objects window, select Teradata_Tpump_Upsert, and then click Edit.
+a)Edit the User Name, Password, EMPID, EMP_NEW_tgt1.txt, and other attributes as necessary.
+b)Repeat these steps for the following objects:
+Teradata_Tpump_Update
+Teradata_Tpump_Insert
+Teradata_Tpump_Delete
+Teradata_FastLoad
+For Unicode environments, append -c UTF8 to the value for the External Loader Executable attribute for each external loader.
+For example:
+
+fastload -c UTF8
+
+tpump -c UTF8
+
+Click Close to close the Relational Connection Browser.
+
+IX)
+i)create source file into mapping and load the data into it.
+ii)Create a new filter named fil_ODS_CUSTOMER_ACTIVE to the Source Qualifier with the property NOT (ISNULL (DATE_CLOSED)) AND CANCELED = 0.
+iii)Now Add a lookup transformation in the designer as seen below with name as lkp_CUSTOMER :
+iv)specify lookup table as customer table
+v)Double click on the header of lkp_CUSTOMER to open the edit menu. Under Condition tab set the lookup condition as CUST_ID = CUST_NO.
+vi)In the Properties tab change the Connection Information to $Source and click on OK to save the transformation:
+vii)Link the lkp_CUSTOMER ports to ODS_CUSTOMER_ACTIVE ports to complete the required transformation where  ODS_CUSTOMER_ACTIVE is the required target file:
+viii)create work flow to get iconic map
+
+VII)
+i)Launch the Informatica Workflow Manager.
+ii)In the Repositories list, select the Informatica repository. The recommended repository name is Siebel_DW_Rep_Teradata for Teradata databases. This value should match the value you entered in Setting Up the Informatica Server.
+iii)In the menu bar, select Repository > Connect.
+iv)Log in using the username and password you entered in Setting Up the Informatica Server. Click Connect.
+Configure the relational connections.
+a)In the menu bar, select Connections > Relational.
+b)In the Objects window, select Olap_Teradata, and then click Edit.
+c)Edit the User Name, Password, Database Name, and Data Source Name, and then click OK.
+d)If you cannot use the existing source connection (the default source connection is for an Oracle database), you need to create a new relational connection and then use the Replace Connections functionality (Connections > Replace) to replace the relational database connection.
+iv)Click Close to close the Relational Connection Browser.
+v)Configure the external loader connection.
+vi)In the menu bar, select Connections > Loader.
+vii)In the Objects window, select Teradata_Tpump_Upsert, and then click Edit.
+a)Edit the User Name, Password, DEPTID,Dname, Location dept_table.txt, and other attributes as necessary.
+b)Repeat these steps for the following objects:
+Teradata_Tpump_Update
+Teradata_Tpump_Insert
+Teradata_Tpump_Delete
+Teradata_FastLoad
+For Unicode environments, append -c UTF8 to the value for the External Loader Executable attribute for each external loader.
+For example:
+
+fastload -c UTF8
+
+tpump -c UTF8
+
+Click Close to close the Relational Connection Browser.
+
+X)
+CREATING TABLE USING INFORMATICA TOOL
+1)Select the table T_ITEM_SUMMARY, and then click TargetsGenerate/Execute SQL.
+2)In the Database Object Generation dialog box, connect to the target database.
+3)Click Generate from Selected tables, and select the Create Table, Primary Key, and Create Index options.
+Leave the other options unchanged.
+4)Click Generate and execute.
+5)The Designer notifies you that the file MKTABLES.SQL already exists.
+6)Click OK to override the contents of the file and create the target table.
+7)The Designer runs the SQL script to create the T_ITEM_SUMMARY table.
+Click Close.
+
+CREATING TABLE IN SQL PLUS
+CREATE TABLE Persons (
+    empiD int,
+    LastName varchar(255),
+    FirstName varchar(255),
+   SAl varchar(255),
+   Location varchar(255)
+);
+
+XI)
+LOAD DATA FROM FALT FILE TO TABLE
+i)CREATE a source defination for Inforamtica load data from text file to sql server
+choose file type and import filed name from given option
+choose delimiter used in the text file. our text separated gy comma delimiter so we are picking comma
+under text qualifier section select flat file 
+ii)create target defination for informatica load data from fext file to sql server
+iv)Create Mapping to Load Data From Text File to SQL Server
+It opens the Mapping Name window to write a unique name for this mapping (m_load_text_to_SQL) and click OK button.
+Drag and drop the Employee source definitions from the Flat File Sources folder to the mapping designer. Once you drag the source, the PowerCenter designer automatically creates the Source Qualifier Transformation
+v)Create Workflow to Load Data From Text File to SQL Server
+a)Create Session to Load Data From Flat File to SQL Server in Informatica
+we have to create non-resusable session for that navigate to tasks menu and sleect create opiton 
+provides unique name for session(s_load_text_to_sql)
+click on create and mapping is created slect mapping that you wantot associate with this session
+m_load_text_to sql
+b)click on start task and session task
+c)double click on session task that will open edit tasks window. withing
+properties tab we configured the target connection value. that stores the relational source inforamtion to tartget variable
+d)click on arrow marked and select sql test as target information
+e)Within the mappings tab, we have to configure the Source and Target Connections
+by clicking filedestination connect target
+f)configure the source connection. click on the SQ_employee present in the sources folder
+i)source filetype: ii)source file directory: iii)source filename:
+g)navigate to Workflows Menu and select the Validate option to validate the Workflow. Now, Let me start the Workflow by choosing the Start Workflow option in Workflows Menu.
+h)Let us open the SQL Server to check whether we successfully transfer the data from a source or not.
+
+XII)
+To import a source definition, open the Source Analyzer and click Sources > Import from File. To import a target definition, open the Target Designer and click Targets > Import from File.
+The Open Flat File dialog box appears.
+Select the file you want to use.
+Select a code page.
+When you import a flat file source definition, select a code page that matches the code page of the data in the file.
+
+Click OK.
+The contents of the file appear in the window at the bottom of the Flat File Wizard.Edit the following settings:
+
+Edit the following settings:
+Importing Fixed Width Flat Files
+
+Click Next.
+Follow the directions in the wizard to manipulate the column breaks in the file preview window. Move existing column breaks by dragging them. Double-click a column break to delete it.
+
+For shift-sensitive files, the Flat File Wizard displays single-byte shift characters as ‘.’ in the window. Double byte shift characters appear as ‘..’ in the window so you can configure the column breaks accurately.
+
+Click Next.
+Enter column information for each column in the file. To switch between columns, select a new column in the Source Definition or Target Definition group, or click the column heading in the file preview window.
+

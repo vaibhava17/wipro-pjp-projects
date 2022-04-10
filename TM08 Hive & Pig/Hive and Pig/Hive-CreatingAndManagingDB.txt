@@ -1,0 +1,152 @@
+I)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <empdata>
+
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+
+public class HiveCreateDb {
+   private static String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
+   
+   public static void main(String[] args) throws SQLException {
+      // Register driver and create driver instance
+   
+      Class.forName(driverName);
+      // get connection
+      
+      Connection con = DriverManager.getConnection("jdbc:hive://localhost:10000/default", "", "");
+      Statement stmt = con.createStatement();
+      
+      stmt.executeQuery("CREATE DATABASE empdata");
+      System.out.println(“Database userdb created successfully.”);
+      
+      con.close();
+   }
+}
+
+II)
+hive> CREATE TABLE IF NOT EXISTS Empdeatils ( empid int, age int 
+salary int, dept String)
+COMMENT ‘Employee details’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+hive> LOAD DATA LOCAL INPATH '/home/user/sample.txt'
+OVERWRITE INTO TABLE Empdeatils;
+
+1001,25,23000,D1
+1004,27,27000,D3
+1002,23,21000,D2
+1003,28,33000,D2
+1006,31,29000,D3
+1007,41,38000,D4
+1009,27,21000,D3
+
+III)hive> CREATE TABLE IF NOT EXISTS DEPT ( deptid int, deptname 
+string, deptloc string)
+COMMENT ‘Department details’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+hive> LOAD DATA LOCAL INPATH '/home/user/test.txt'
+OVERWRITE INTO TABLE DEPT;
+
+D1,IT,BDC
+D2,HR,CDC
+D3,Finance, HDC
+D4,Sales,KDC
+
+IV)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <empdata1>
+
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+
+public class HiveCreateDb {
+   private static String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
+   
+   public static void main(String[] args) throws SQLException {
+      // Register driver and create driver instance
+   
+      Class.forName(driverName);
+      // get connection
+      
+      Connection con = DriverManager.getConnection("jdbc:hive://localhost:10000/default", "", "");
+      Statement stmt = con.createStatement();
+      
+      stmt.executeQuery("CREATE DATABASE empdata1");
+      System.out.println(“Database userdb created successfully.”);
+      
+      con.close();
+   }
+}
+
+
+V)
+hive> CREATE TABLE IF NOT EXISTS Order ( OrderID int,CustID 
+int, OrderDate int)
+COMMENT ‘Order’
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ‘\t’
+LINES TERMINATED BY ‘\n’
+STORED AS TEXTFILE;
+
+LOAD THE DATA INTO TABLE THROUGH TEXT FILE
+hive> LOAD DATA LOCAL INPATH '/home/user/orders.txt'
+OVERWRITE INTO TABLE DEPT;
+
+101,C001,10/12/2015
+102,C002, 11/10/2015
+103,C003,15/12/2015
+
+VII)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <hdp1>
+
+import java.sql.SQLException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.DriverManager;
+
+public class HiveCreateDb {
+   private static String driverName = "org.apache.hadoop.hive.jdbc.HiveDriver";
+   
+   public static void main(String[] args) throws SQLException {
+      // Register driver and create driver instance
+   
+      Class.forName(driverName);
+      // get connection
+      
+      Connection con = DriverManager.getConnection("jdbc:hive://localhost:10000/default", "", "");
+      Statement stmt = con.createStatement();
+      
+      stmt.executeQuery("CREATE DATABASE hdp1");
+      System.out.println(“Database userdb created successfully.”);
+      
+      con.close();
+   }
+}
+
+VIII)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <hdp2>
+if(hiveContext.hql("SHOW TABLES LIKE"'"+hdp2+"'").count()==1{
+println(hdp2+"exists")
+
+IX)
+SHOW(DATABASES|SCHEMAS [LIKE identifier_with_wildcards];
+
+X)
+hive> DROP DATABASE IF EXISTS hdp1,hdp2;
+hive> DROP DATABASE IF EXISTS hdp1,hdp2 CASCADE;
+hive> DROP SCHEMA hdp1,hdp2;

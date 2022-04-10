@@ -1,0 +1,14 @@
+I)
+hive> SELECT * FROM employees WHERE Salary<30000 && Dept=D1;
+
+II)
+hive> SELECT * FROM employees WHERE  Dept!=D2;
+
+III)
+hive> SELECT * FROM employees WHERE  Dept==D2;
+
+IV)
+hive> SELECT deptId , MAX(Salary) FROM employees GROUP BY deptId;
+hive> SELECT deptId , MIN(Salary) FROM employees GROUP BY deptId;
+hive> SELECT deptId , AVG
+(Salary) FROM employees GROUP BY deptId;

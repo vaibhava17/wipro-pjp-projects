@@ -1,0 +1,34 @@
+I)
+hive> SELECT e.ID, e.ENAME, d.sal, d.loc 
+FROM employees e 
+LEFT OUTER JOIN department d 
+ON (e.ID = d.dept_ID);
+
+II)
+SELECT e.dept_id, e.ename, e.job_id, d.dept_name
+FROM employees e, departments d
+WHERE e.department_id=d.dept_id
+AND d.dept_name='Finance';
+
+
+III)
+hive> SELECT c.ID, c.NAME, o.AMOUNT, o.DATE 
+FROM CUSTOMERS c 
+LEFT OUTER JOIN ORDERS o 
+ON (c.ID = o.CUSTOMER_ID);
+BEGIN
+SELECT SUM(PURCH_AMT);
+FROM ORDERS;
+END;
+/
+
+IV)
+SELECT c.customerID, o.OrderID,(ord.Quantitiy*p.price)as
+Total_amount
+from Custormers c inner join Orders o
+inner join Products p
+nner join OrderDetails ord
+on c.CustomerID=o.customerID
+and o.OrderID=ord.OrderID
+and ord.ProductID=ProductID
+tax_amount= toatalamount*10%;

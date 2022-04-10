@@ -1,0 +1,2 @@
+There is no file on my system whose inode number
+is 1 on my system.

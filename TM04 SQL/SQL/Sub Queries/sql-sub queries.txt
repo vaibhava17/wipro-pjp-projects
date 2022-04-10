@@ -1,0 +1,33 @@
+1. SELECT last_name, hire_date FROM hr.employees WHERE  department_id = (SELECT department_id FROM hr.employees WHERE  last_name = 'Austin') AND last_name  'Austin'; 
+
+2. SELECT  FROM hr.employees WHERE  salary  (SELECT Avg(salary)FROM hr.employees); 
+
+3. 
+
+4. SELECT employee_id, last_name, salary FROM hr.employees WHERE  salary  ALL (SELECT Avg(salary) FROM hr.employees WHERE  department_id = '10') ORDER  BY salary; 
+
+5. SELECT last_name, hire_date FROM hr.employees WHERE  department_id = (SELECT department_id  FROM hr.employees  WHERE  last_name = 'Olson') AND last_name  'Olson'; 	 
+
+6. SELECT employee_id, last_name FROM hr.employees WHERE  department_id in(SELECT department_idFROM hr.employeesWHERE  last_name like '%R%');  
+
+7. SELECT last_name, department_id FROM hr.employees WHERE  department_id IN (SELECT deptnoFROM scott.deptWHERE  loc = 'NEW YORK'); 						 
+
+8. SELECT last_name, department_id FROM hr.employees WHERE  department_id IN (SELECT deptnoFROM scott.deptWHERE  loc = '&loc'); 						 
+
+9. SELECT ename, sal FROM scott.emp WHERE  mgr = (SELECT empno FROM scott.emp WHERE  ename = 'KING'); 			  
+
+10. SELECT  FROM scott.emp WHERE  deptno = (SELECT deptno FROM scott.emp WHERE  ename = 'JONES'); 				 
+
+11. SELECT empno, ename, sal FROM scott.emp WHERE  sal  (SELECT Avg(sal) FROM scott.emp);
+
+12. SELECT Round (Avg(sal), 2)avg sal FROM scott.emp WHERE  deptno IN(SELECT deptno  FROM scott.dept); 				 
+
+13. SELECT FROM  (SELECT rownum AS rank, ename, sal FROM (SELECT ename,   salFROM scott.empORDER  BY sal DESC) WHERE  rownum = '11') WHERE  rank = '&rank'; 
+
+14. SELECT FROM  (SELECT rownum AS rank, empno, ename FROM scott.emp WHERE  rownum  ( 100 ) ORDER  BY empno DESC) WHERE  rank = '&rank'; 
+
+15. SELECT  FROM scott.emp WHERE  deptno = (SELECT deptno  FROM scott.dept  WHERE  loc = 'DALLAS') ORDER  BY empno; 
+
+16. SELECT ename, avg_sal FROM scott.emp e, (SELECT deptno,Avg(sal)avg_sal  FROM scott.emp  GROUP  BY deptno) e1 WHERE  e.deptno = e1.deptno AND e.sal  e1.avg_sal; 	 
+
+17. WITH DEPTAVG AS (select deptno, loc from scott.dept where deptno in( select deptno from (select avg(sal) sal,deptno from scott.emp group by deptno) where sal  (SELECT AVG (sal) FROM scott.emp))) select deptno,loc from deptavg; 

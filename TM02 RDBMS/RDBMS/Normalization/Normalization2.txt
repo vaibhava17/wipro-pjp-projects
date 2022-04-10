@@ -1,0 +1,11 @@
+The given STUDENT Table is in 2NF before proceeding to 3NF.
+The other condition is that, there should be no transitive dependency of non-prime  attribute.
+So ROLLNO determines EXAM,EXAM determines MARKS.
+This implies we have functional dependeny,and this structure does not  satisfy the 3NF.
+
+
+In order to achieve 3NF,we need to divide table as followed:
+
+TABLE1 ---> ROLLNO,NAME,AGE,EXAM
+TABLE2 ---> EXAM,MARKS,GRADE
+

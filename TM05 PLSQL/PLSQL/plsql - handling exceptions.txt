@@ -1,0 +1,74 @@
+I)
+CREATE TABLE MESSAGES AS SELECT employee_id, first_name, SAL FROM EMP;
+MESSAGES TYPE VARCHAR2(1000)
+DECLARE
+  next_value SAL;
+BEGIN
+	 
+SELECT employees_seq.NEXTVAL INTO next_value FROM EMP;
+WHERE SAL=''
+DBMS_OUTPUT.PUT_LINE('ENAME WITH THAT SAL'|| VAL)
+IF VAL=''
+THEN
+DBMS_OUTPUT.PUT_LINE(VALUE ENTERED ARE ENAME ''|| SAL'')
+  INSERT INTO MESSAGES VALUES( EMP.CURRVAL, 'value 1');
+ELSE
+DBMS_OUTPUT.PUT_LINE('NO ONE WITH THAT SAL')
+END IF;
+DBMS_OUTPUT.PUT_LINE('OTHER ERROR')
+END;
+/
+DROP TABLE employees_temp;
+DROP TABLE employees_temp2;
+
+II)
+create or EMP_TABLE(E.EMPNO,E.ENAME, E.SAL VARCHAR2)
+    is
+        v_error NUMBER;
+         v_sqlerrm  VARCHAR2(4000);
+    begin
+     INSERT employee
+   where EMPNO=E.EMPNO;
+	ENAME=E.EMPNO;
+	SAL=E.SAL
+   exception
+   when others then
+           v_error :=sqlcode;
+           v_sqlerrm := sqlerrm;
+           DBMS_OUTPUT.put_line('E.EMPNO:'||E.EMPNO);
+          DBMS_OUTPUT.put_line('v_error:'||v_error);
+           DBMS_OUTPUT.put_line('v_sqlerrm:'||v_sqlerrm);
+           if sqlcode=-60 then -- deadlock error is ORA-00060
+          null;
+     else
+         raise;
+      end if;
+   end;
+   /
+
+III)
+create or EMP_TABLE(E.EMPNO,E.ENAME, E.SAL VARCHAR2)
+    is
+        v_error NUMBER;
+         v_sqlerrm  VARCHAR2(4000);
+    begin
+     DELETE employee
+   where EMPNO=E.EMPNO;
+	ENAME=E.EMPNO;
+	SAL=E.SAL
+   exception
+   when others then
+           v_error :=sqlcode;
+           v_sqlerrm := sqlerrm;
+           DBMS_OUTPUT.put_line('E.EMPNO:'||E.EMPNO);
+          DBMS_OUTPUT.put_line('v_error:'||v_error);
+           DBMS_OUTPUT.put_line('v_sqlerrm:'||v_sqlerrm);
+           if sqlcode=-60 then -- deadlock error is ORA-00060
+          null;
+     else
+         raise;
+      end if;
+   end;
+   /
+
+IV)

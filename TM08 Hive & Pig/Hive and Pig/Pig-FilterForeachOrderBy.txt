@@ -1,0 +1,6 @@
+I)
+Qty_above_5 = FILTER order_details BY qty>='5';
+grunt> Dump Qty_above_5;
+
+II)
+grunt> foreach_data = FOREACH order_details GENERATE OrderID,Rate,quantity,custid;

@@ -1,0 +1,3 @@
+Yes, the inode number of test123 and test123-hl
+is same as hardlink acts as a copy/mirror of the 
+selected file.

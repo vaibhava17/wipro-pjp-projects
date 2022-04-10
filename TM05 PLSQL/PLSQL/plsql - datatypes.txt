@@ -1,0 +1,10 @@
+I)
+
+vr_SCOTT.EMP EMPLOYEES%ROWTYPE;
+Z_EMPNO NUMBER: =&EMPNO;
+BEGIN
+SELECT*
+INTO vr_SCOTT.EMP
+FROM EMPLYOEE
+WHERE EMPNO=Z_EMPNO;
+dbms_output.Put_line(vr_e.first_name||''||vr_e.last_name||'has an Id of'  || z_EMPNO);

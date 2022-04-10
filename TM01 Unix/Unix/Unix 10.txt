@@ -1,0 +1,1 @@
+No, the inode number of newdir and newdir-sl is different.

@@ -1,0 +1,3 @@
+Every directory has a link to itself and its parent.
+Therefore one link represents its own files
+where as another link represents its parent content.

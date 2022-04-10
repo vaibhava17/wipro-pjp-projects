@@ -1,0 +1,143 @@
+I)
+i)open informatica Designer tool
+click on mapping designer icon to launch mapping designer
+ii)click on mapping menu
+select create option
+iii)Enter Mapping name as 'm_emp_emp_target' and select OK button
+iv) selet "emp" source table under sources folder
+drag and drop "emp" table into mapping designer
+v)select "emp_target" source table under targets folder
+drag and drop "emp_target" table into mapping designer
+vi)Right click anywhere in the mapping designer empty workspace and select option arrange iconic
+vii) we design with the flow from left to right. So source tables should be at the 
+left side and target tables should be at right. to arrange tables in our worksapce, select the "emp_target" table then drag and derop it to the right side of the emp table
+viii) double click on SQ_EMP table and EMP_TARGET table to change the view of them from iconic to the graphic
+ix)Right click on mapping designer workspace and select "Autolink" by name option
+x)– To link source with target table
+
+Select Source table columns.
+Drag and drop columns to the target table.
+
+II)
+i)open informatica Designer tool
+click on mapping designer icon to launch mapping designer
+ii)click on mapping menu
+select create option
+iii)Enter Mapping name as 'm_emp_emp_details' and select OK button
+iv) selet "emp" source table under sources folder
+drag and drop "emp" table into mapping designer
+v)select "emp_details" source table under targets folder
+drag and drop "emp_detials" table into mapping designer
+vi)Right click anywhere in the mapping designer empty workspace and select option arrange iconic
+vii) we design with the flow from left to right. So source tables should be at the 
+left side and target tables should be at right. to arrange tables in our worksapce, select the "emp_target" table then drag and derop it to the right side of the emp table
+viii) double click on EmpNO table and Ename table to change the view of them from iconic to the graphic
+ix)Right click on mapping designer workspace and select "Autolink" by name option
+x)– To link source with target table
+xi)link EMPNO WITH ENAME and display salary
+
+Select Source table columns.
+Drag and drop columns to the target table.
+
+III)
+1)The Import Stored Procedure dialog box appears.
+2)Select the ODBC connection for the source database. Enter a user name, owner name, and password. Click Connect.
+3)Select the stored procedure named SP_GET_JOB_COUNT from the list and click OK.
+4)In the Create Transformation dialog box, click Done.
+The Stored Procedure transformation appears in the mapping.
+5)Open the Stored Procedure transformation, and click the Properties tab.
+6)Click Open in the Connection Information section.
+The Select Database dialog box appears.
+7)Select the source database and click OK.
+You can call stored procedures in both source and target databases.
+You can also select the built-in database connection variable, $Source. When you use $Source or $Target, the Integration Service determines which source database connection to use when it runs the session. If it cannot determine which connection to use, it fails the session.
+8)The following image shows the Properties tab of Stored Procedure transformation SP_GET_ITEM_COUNT:
+On the Properties tab, TUTORIAL_SOURCE appears at the Connection Information value. 
+				  
+Click OK.
+9)Connect the ITEM_ID column from the Source Qualifier transformation to the ITEM_ID column in the Stored Procedure transformation.
+10)Connect the RETURN_VALUE column from the Stored Procedure transformation to the NUMBER_ORDERED column in the target table F_PROMO_ITEMS.
+Click RepositorySave.
+
+IV)
+1)The Import Stored Procedure dialog box appears.
+2)Select the ODBC connection for the source database. Enter a user name, owner name, and password. Click Connect.
+3)Select the stored procedure named sal  from the list and click OK.
+4)In the Create Transformation dialog box, click Done.
+The Stored Procedure transformation appears in the mapping.
+5)Open the Stored Procedure transformation, and click the Properties tab.
+6)Click Open in the Connection Information section.
+The Select Database dialog box appears.
+takes the sal column increase sal by 1000.
+7)Select the source database and click OK.
+You can call stored procedures in both source and target databases.
+You can also select the built-in database connection variable, $Source. When you use $Source or $Target, the Integration Service determines which source database connection to use when it runs the session. If it cannot determine which connection to use, it fails the session.
+8)The following image shows the Properties tab of Stored Procedure transformation SP_GET_ITEM_COUNT: salary
+On the Properties tab, Employee_detaails appears at the Connection Information value. 
+				  
+Click OK.
+9)Connect the ename column from the Source Qualifier transformation to the Ename column in the Stored Procedure transformation.
+10)connect that salary with new sal column that increased by 1000
+
+V)
+1)The Import Stored Procedure dialog box appears.
+2)Select the ODBC connection for the source database. Enter a user name, owner name, and password. Click Connect.
+3)Select the stored procedure named employee from the list and click OK.
+4)In the Create Transformation dialog box, click Done.
+The Stored Procedure transformation appears in the mapping.
+5)Open the Stored Procedure transformation, and click the Properties tab.
+6)Click Open in the Connection Information section.
+The Select Database dialog box appears.
+7)Select the source database and click OK.
+You can call stored procedures in both source and target databases.
+You can also select the built-in database connection variable, $Source. When you use $Source or $Target, the Integration Service determines which source database connection to use when it runs the session. If it cannot determine which connection to use, it fails the session.
+8)The following image shows the Properties tab of Stored Procedure transformation SP_GET_ITEM_COUNT:empname, empno, sal
+On the Properties tab,employee details appears at the Connection Information value. 
+				  
+Click OK.
+9) connect that target table with empno, ename, sal
+10)Connect the RETURN_VALUE column from the Stored Procedure transformation to the NUMBER_ORDERED column in the target table F_PROMO_ITEMS.
+Click RepositorySave.
+
+VI)
+1)The Import Stored Procedure dialog box appears.
+2)Select the ODBC connection for the source database. Enter a user name, owner name, and password. Click Connect.
+3)Select the stored procedure named sal  from the list and click OK.
+4)In the Create Transformation dialog box, click Done.
+The Stored Procedure transformation appears in the mapping.
+5)Open the Stored Procedure transformation, and click the Properties tab.
+6)Click Open in the Connection Information section.
+The Select Database dialog box appears.
+takes the sal column increase sal by 1000.
+7)Select the source database and click OK.
+You can call stored procedures in both source and target databases.
+You can also select the built-in database connection variable, $Source. When you use $Source or $Target, the Integration Service determines which source database connection to use when it runs the session. If it cannot determine which connection to use, it fails the session.
+8)The following image shows the Properties tab of Stored Procedure transformation SP_GET_ITEM_COUNT: REV_SAL
+On the Properties tab, Employee_detaails appears at the Connection Information value. 
+empno, ename, sal, REV_SAL as connect to target table			  
+Click OK.
+9)Connect the ename column from the Source Qualifier transformation to the Ename column in the Stored Procedure transformation.
+10)connect that salary with new sal column that increased by 1000
+
+VII)
+i)Create a new database target table, for example, say “sum_emp_deptwise”, using the below script. You will see the new database target table is created under Target folder in next step.
+ii)reate a New mapping “m_ sum_emp_deptwise”.
+
+In order to create new mapping, we need source table (EMP) and target table (sum_sal_deptwise) both in mapping designer for that we need to
+
+Import the target table “sum_emp_deptwise” in the mapping.
+Import the source table “emp”.
+iii)From the Source Qualifier, delete the columns empno, ename, job, mgr, hiredate & comm so leaving only the columns deptno and sal.
+Create a new aggregator transformation using the toolbox menu as shown in screen shot. When you click on the aggregator icon, a new aggregator transformation will be created.
+iv) Drag and drop SAL & DEPTNO columns from source qualifier (SQ_EMP) to the aggregator transformation
+v)double click on aggregator transformation to open its properties 
+a)Add a new port in the transformation
+b)Rename the port name to SUM_emp
+c)Change the data type of this new port to double
+d)Make this port as output port by selecting the checkbox of the output port.
+e)Click on the expression option
+v)Add expression- sum(EMP), you have to write this expression.
+Select Ok Button, this will bring back the edit transformation window.
+vi)edit transformation window, select option “GroupBy” by marking the check box against the deptno column and Click Ok ( by selecting group by against the deptno, we are instructing Informatica to group salaries by deptno)
+vii)Link the deptno and sum_emp columns from aggregator transformation to the target table
+

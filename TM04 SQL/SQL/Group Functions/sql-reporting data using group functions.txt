@@ -1,0 +1,15 @@
+1. SELECT Max(salary) AS highest, Min(salary) AS lowest, Sum(salary) AS sum, Avg(salary) AS average FROM   hr.employees;  
+
+2. SELECT Round(Max(salary), 0) "maximum", Round(Min(salary), 0) "minimum", Round(Sum(salary), 0) "sum", Round(Avg(salary), 0) "average" FROM   hr.employees;  
+
+3. SELECT Max(salary) AS maximum, Min(salary) AS minimum, Sum(salary) AS sum, Avg(salary) AS average FROM   hr.employees GROUP  BY job_id;  
+
+4. SELECT Count(job_id) AS job, job_id FROM   hr.employees GROUP  BY job_id;  
+
+5. SELECT Count(DISTINCT manager_id)AS managers FROM   hr.employees;  
+
+6. SELECT Max(salary) - Min (salary) difference FROM   hr.employees;  
+
+7. SELECT manager_id, Min(salary) FROM   hr.employees WHERE  manager_id IS NOT NULL GROUP  BY manager_id HAVING Min (salary) < 2000 ORDER  BY Min(salary) DESC; 
+
+8. SELECT Count(*)total, Sum(Decode(To_char(hiredate, 'YYYY'), 1980, 1, 0)) "1980", Sum(Decode(To_char(hiredate, 'YYYY'), 1981, 1, 0)) "1981", Sum(Decode(To_char(hiredate, 'YYYY'), 1982, 1, 0)) "1982" FROM   scott.emp; 

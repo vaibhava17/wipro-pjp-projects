@@ -1,0 +1,121 @@
+import mysql.connector as a 
+con = a.connect(host="localhost", user="root", password="12345", database="bank1")
+def openAcc():
+name=input("Enter name :")
+accountno=input("Enter AccountNO :")
+db=input("Enter D.O.B")
+phone=input("Enter Phone");
+address=input("Enter Address");
+ob=int(input("Enter opening Balance");
+data1=(name, accountno,phone,address, ob)
+data2=(name,accountno,ob)
+sql1='insert into account values(%s,%s,%s,%s,%s)'
+sal2='insert into amount values(%S,%s,%S,%s)'
+c=con.cursor()
+c.execute(sql1,data1)
+c.execute(sql2,data2)
+con.commit()
+print("data entered successfully")
+main()
+
+def depAmo():
+am=int(input("Enter amount :"))
+ac=input("Enter account number :")
+a="select balance from amount where acno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(a,data)
+myresult=c.fetchone()
+tam=myresult[0]+am
+sql="update amount set balance =%s where acono=%s"
+d=(tam,ac)
+c.execute(sql,d)
+con.commit()
+main()
+
+def balance():
+ac=input("Enter Account No :")
+a="select balance from amount where acno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(a,data)
+myresult=c.fetchone()
+tam=myresult[0]-am
+sql="update amount set balance =%s where acno=%s"
+d=(tam,ac)
+c.execute(sql,d)
+con.commit()
+main()
+
+def witham():
+ac=input("Enter Account No:");
+a="select balance from amount where accno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(a,data)
+myresult=c.fetchone()
+tam=myresult[0]-am
+sql="update amount set balance=%s where acno=%s"
+d=(tam,ac)
+c.execute(sql,d)
+con.commit()
+main()
+
+def balance():
+ac=input("Enter Account No:")
+a="select balance from amount where acno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(a,data)
+myresult=c.fetchone()
+print("balance for account :" ,ac,"is", myresult[0])
+main()
+
+def dispacc():
+ac=input("Enter account No :")
+a="select * from account where accountno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(a,data)
+myresult=c.fetchone()
+for i in myresult:
+print(i,end="")
+main()
+
+def closeacc():
+ac=input("Enter Account No:")
+sql1="delete from amount where acno=%s"
+sql2="delete from amount where acno=%s"
+data=(ac,)
+c=con.cursor()
+c.execute(sql1,data)
+c.execute(sql2,data)
+con.commit()
+main()
+
+def main():
+print("""
+1.OPEN NEW ACCOUNT
+2.DEPOSIT AMOUNT
+3.WITHDRAW AMOUNT
+4.BALANCE ENQUIRY
+5.DISPLAY CUSTOMER DETAILS
+6.CLOSE AN ACCOUNT
+""")
+choice =input("Enter task NO :")
+if(choice=='1'):
+openAcc()
+elif(choice=='2'):
+depoAmo()
+elif(choice=='3'):
+witham()
+elif(choice=='4'):
+balance()
+elif(choice=='5'):
+dispacc()
+elif(choice=='6'):
+closeac()
+else:
+print("Wrong choice.....")
+main()
+main()

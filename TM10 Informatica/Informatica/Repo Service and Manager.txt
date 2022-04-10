@@ -1,0 +1,78 @@
+I)
+i)select doucment to merge 
+ii)in toolbox option of merging is there select files Emp10.txt and emp20.txt
+iii)select doucment into currently open new document mergeTar.txt
+iv)click on arrow next and to the merge button and select the desired merge option 
+v)finish and click ok to merge two files
+
+II)
+FOLLOW BELOW STEPS FOR SCD TYPE 1 USING INFORMATICA TOOL
+i)In the Mapping Designer, click Mappings > Wizards > Slowly Changing Dimension.
+ii)Enter a mapping name and select Type 1 Dimension, and click Next.
+iii)The naming convention for mappings is m_MappingName.
+Select a source definition to be used by the mapping.
+All available source definitions appear in the Select Source Table list. This list includes shortcuts, flat file, relational, and Application sources.
+iv)Enter a name for the mapping target table. Click Next.
+v)The naming convention for target definitions is STANDALONE.CUST_D(PM_PRIMARYKEY)
+vi)Select the column or columns you want to use as a lookup condition from the Target Table Fields list and click Add.
+vii)The wizard adds selected columns to the Logical Key Fields list.
+The columns you select should be a key column in the source.
+When you run the workflow containing the session, the Integration Service performs a lookup on existing target data. The Integration Service returns target data when Logical Key Fields columns match corresponding target columns.
+viii)To remove a column from Logical Key Fields, select the column and click Remove.
+ix)Select the column or columns you want the Integration Service to compare for changes, and click Add.
+x)The wizard adds selected columns to the Fields to Compare for Changes list.
+xi)When you run the workflow containing the session, the Integration Service compares the columns in the Fields to Compare for Changes list between source rows and the corresponding target (lookup) rows. If the Integration Service detects a change, it marks the row changed.
+xii)To remove a column from the list, select the column and click Remove.
+xiii)Click Finish.
+The new mapping appears in the workspace. Make the necessary edits to the mappings.
+In the Type 1 Dimension mapping, the Designer uses two instances of the same target definition to enable inserting and updating data in the same target table. Generate only one target table in the target database.
+
+III)
+FOLLOW BELOW STEPS FOR SCD TYPE 2 USING INFORMATICA TOOL
+1)Create the source and dimension tables in the database.
+2)Open the mapping designer tool, source analyzer and either create or import the source definition.
+3)Go to the Warehouse designer or Target designer and import the target definition.
+4)Go to the mapping designer tab and create new mapping.
+5)Drag the source into the mapping.
+6)Go to the toolbar, Transformation and then Create.
+
+1)Select the customer dimension table and click on OK.
+2)Edit the lookup transformation, go to the ports tab and remove unnecessary ports. Just keep only Cust_key, customer_id and location ports in the lookup transformation. Create a new port (IN_Customer_Id) in the lookup transformation. This new port needs to be connected to the customer_id port of the source qualifier transformation.
+
+1)Go to the conditions tab of the lookup transformation and enter the condition as Customer_Id = IN_Customer_Id
+2)Go to the properties tab of the LKP transformation and enter the below query in Lookup SQL Override. Alternatively you can generate the SQL query by connecting the database in the Lookup SQL Override expression editor and then add the WHERE clause.
+
+1)Click on Ok in the lookup transformation. Connect the customer_id port of source qualifier transformation to the In_Customer_Id port of the LKP transformation.
+2)Create an expression transformation with input/output ports as Cust_Key, LKP_Location, Src_Location and output ports as New_Flag, Changed_Flag. Enter the below expressions for output ports.
+
+IV)
+FOLLOW BELOW STEPS FOR SCD TYPE 3 USING INFORMATICA TOOL
+1)Create the source and dimension tables in the database.
+2)Open the mapping designer tool, source analyzer and either create or import the source definition.
+3)Go to the Warehouse designer or Target designer and import the target definition.
+4)Go to the mapping designer tab and create new mapping.
+5)Drag the source into the mapping.
+6)Go to the toolbar, Transformation and then Create.
+7)Select the lookup Transformation, enter a name and click on create. You will get a window as shown in the below image.
+
+1)Select the customer dimension table and click on OK.
+2)Edit the LKP transformation, go to the properties tab, remove the Previous_Location port and add a new port In_Customer_Id. This new port needs to be connected to the Customer_Id port of source qualifier transformation.
+
+1)Go to the condition tab of LKP transformation and enter the lookup condition as Customer_Id = IN_Customer_Id. Then click on OK.
+2)Connect the customer_id port of source qualifier transformation to the IN_Customer_Id port of LKP transformation.
+
+1)Create the expression transformation with input ports as Cust_Key, Prev_Location, Curr_Location and output ports as New_Flag, Changed_Flag
+2)For the output ports of expression transformation enter the below expressions and click on ok
+
+Now connect the ports of LKP transformation (Cust_Key, Curent_Location) to the expression transformaiton ports (Cust_Key, Prev_Location) and ports of source qualifier transformation (Location) to the expression transformation ports (Curr_Location) respectively.
+
+1)Create a filter transformation and drag the ports of source qualifier transformation into it. Also drag the New_Flag port from the expression transformation into it.
+2)Edit the filter transformation, go to the properties tab and enter the Filter Condition as New_Flag=1. Then click on ok.
+3)Now create an update strategy transformation and connect all the ports of the filter transformation (except the New_Flag port) to the update strategy. Go to the properties tab of update strategy and enter the update strategy expression as DD_INSERT
+4)Now drag the target definition into the mapping and connect the appropriate ports from update strategy to the target definition. Connect Location port of update strategy to the Current_Location port of the target definition.
+5)Create a sequence generator transformation and connect the NEXTVAL port to the target surrogate key (cust_key) port.
+
+1)Now create another filter transformation, Go to the ports tab and create the ports Cust_Key, Curr_Location, Prev_Location, Changed_Flag. Connect the ports LKP Transformation (Cust_Key, Current_Location) to the filter transformation ports (Cust_Key, Prev_Location), source qualifier transformation ports (Location) to the filter transformation port (Curr_Location) and expression transformation port(changed_flag) to the changed_flag port of the filter transformation.
+2)Edit the filter transformation, go to the properties tab and enter the Filter Condition as Changed_Flag=1. Then click on ok.
+3)Now create an update strategy transformation and connect the ports of the filter transformation (Cust_Key, Curr_Location, Prev_location) to the update strategy. Go to the properties tab of update strategy and enter the update strategy expression as DD_Update
+4)Now drag the target definition into the mapping and connect the appropriate ports from update strategy to the target definition.

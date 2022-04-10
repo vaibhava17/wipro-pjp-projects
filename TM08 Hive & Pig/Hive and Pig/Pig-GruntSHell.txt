@@ -1,0 +1,33 @@
+I)
+LODING ALL DATABASE
+
+grunt> customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(',');
+ 
+grunt> orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',');
+ 
+grunt> student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING PigStorage(',');
+ 
+grunt> sh ls
+   
+pig 
+pig_1444799121955.log 
+pig.cmd 
+pig.py
+
+II)
+FOR EXECUTING CURRENT DIRECTORY
+grunt> exec /sample_script.pig
+
+III)
+FOR CLEAR SCREEN
+grunt> clear
+
+IV)
+SEE HISTORY IN GRUNT SHELL
+grunt> history
+
+customers = LOAD 'hdfs://localhost:9000/pig_data/customers.txt' USING PigStorage(','); 
+  
+orders = LOAD 'hdfs://localhost:9000/pig_data/orders.txt' USING PigStorage(',');
+   
+student = LOAD 'hdfs://localhost:9000/pig_data/student.txt' USING PigStorage(',');

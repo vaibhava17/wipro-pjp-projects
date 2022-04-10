@@ -1,0 +1,28 @@
+I)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <P1>
+
+II)
+hive> ALTER TABLE P1
+> ADD PARTITION (year=’2012’)
+> location '/2012/part2012';
+
+III)
+jdbc:hive2://>LOAD DATA INPATH
+'/data/sample.txt' INTO TABLE
+P1;
+
+IV)
+hive> ALTER TABLE P1
+> ADD PARTITION (year=’2013’)
+> location '/2013/part2013';
+
+V)
+hive> CREATE DATABASE| SCHEMA [IF NOT EXISTS] <P2>
+hive> ALTER TABLE P2
+> ADD PARTITION (year=’2014’)
+> location '/2014/part2014';
+
+VI)
+hive> ALTER TABLE P2 DROP [IF EXISTS]
+   > PARTITION (year=’2014’);
+

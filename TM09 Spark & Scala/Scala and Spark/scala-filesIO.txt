@@ -1,0 +1,37 @@
+I)
+h= open('sample.txt','r')
+content=h.readlines()
+a=0
+for line in content:
+for i in line:
+if i.isdigit()==True:
+a+=int(i)
+print("the sum is :",a)
+
+
+sample.txt
+first number is 300
+second number is 500
+third number is 200
+
+II)
+file1= open('sample.txt','r')
+content=h.readlines()
+a=0
+for line in content:
+for i in line:
+if i.isdigit()==True:
+a+=int(i)
+print("the sum is :",a);
+file1=open("sampl.txt","w")
+file1.write("sum of number is: 1000")
+file1.close()
+
+file1=open("sample.txt","r")
+print("output is")
+print(file1.readlines())
+print()
+file1.close()
+
+
+

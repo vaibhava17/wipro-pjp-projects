@@ -1,0 +1,2 @@
+Yes a directory has two links upon 
+its creation.

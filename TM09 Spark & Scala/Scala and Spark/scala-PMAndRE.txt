@@ -1,0 +1,13 @@
+I)
+def first(str):
+for i in range(0,len(str)):
+if(str[i],istitle()):
+return str[i]
+return 0
+str="Apple"
+res = frist(str)
+if(res==0):
+print("No uppercase letter")
+else:
+print(res)
+

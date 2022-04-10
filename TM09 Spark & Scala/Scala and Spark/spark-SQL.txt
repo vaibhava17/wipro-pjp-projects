@@ -1,0 +1,50 @@
+I)
+
+case class emp(id: int, name: string, age:int)
+val empdetailsDS=seq(emp("101","Ram","29"),emp("102","sai","30"),
+emp("103","joe","32"),emp("104","sirish","30"),emp("105","shekhar","32"))
+
+II)
+import spark.implicits._
+val columns = Seq("id","name","age")
+val data = Seq((emp("101","Ram","29"),emp("102","sai","30"),
+emp("103","joe","32"),emp("104","sirish","30"),emp("105","shekhar","32"))
+
+val df = data.toDF(columns:_*)
+df.show()
+
+III)
+val df = spark.read.json("examples/src/main/resources/emp.json")
+
+df.show()
+
+IV)
+scala> df.filter("name").show
+
+V)
+scala> df.filter("age").show
+
+VI)
+object Sort {
+
+  id: int, name: string, age:int)
+val empdetailsDS=seq(emp("101","Ram","29"),emp("102","sai","30"),
+emp("103","joe","32"),emp("104","sirish","30"),emp("105","shekhar","32"))
+
+
+  def main(args: Array[String]): Unit = {
+    val conf = new SparkConf()
+      .setAppName("Test")
+      .set("spark.executor.memory", "2g")
+    val sc = new SparkContext(conf)
+    val rs = sc.parallelize(recs)
+    val rsGrp = rs.groupBy(r => (r.day, r.kind, r.city)).map(_._2)
+    val x = rsGrp.map{r => 
+      val lst = r.toList
+      lst.map{e => (e.prize, e)}
+      }
+    x.sortByKey()
+  }
+
+VII)
+scala> df.filter($"age">30).show

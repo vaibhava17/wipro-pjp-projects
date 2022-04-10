@@ -1,0 +1,39 @@
+I)
+def Mylist1(listName):
+string = ''.join(listName)
+count =0
+vowels = 'aeiouAEIOU'
+for ch in string:
+if ch in vowels:
+count +=1
+return count
+print(Mylist1(["apple","orange","mango"]);
+
+II)
+Fruit=["apple", "orange","mango"]
+Vegetable=["potato","tomato","onion"]
+print("original list 1 : " +str(fruit))
+print("original list 2 : " +str(vegetables))
+eatbles=[]
+for i in range(0,len(fruit)):
+res_list.append(fruit[i]+vegetables[i])
+print("resultant list is:"+str(eatables))
+
+III)
+
+import java.util.*;
+public class GFG{
+public static void main(String[] args)
+{
+HashMap<String, interger>map = new Hashmap<>();
+map.put("red", 10);
+map.put("blue", 20);
+map.put("pink", 30);
+map.put("black", 40);
+System.out.println("Hashmap:" +map.toString(3) ,+map.toString(4));
+
+
+
+
+
+

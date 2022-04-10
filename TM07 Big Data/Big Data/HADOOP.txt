@@ -1,0 +1,100 @@
+I)
+hadoop version
+
+II)
+hadoop fs -ls /
+
+III)
+hadoop fs -df hdfs:/
+
+IV)
+hadoop fs -count hdfs:/
+ 
+V)
+hadoop fs -count
+
+VI)
+hadoop fsck -/
+
+VII)
+hadoop balancer
+
+VIII)
+hadoop fs -mkdir /user/training/hadoop
+
+IX)
+hadoop fs -put data/sample.txt /user/training/hadoop
+
+X)
+hadoop fs -ls /user/training/hadoop
+
+XI)
+/user/training directory in hdfs
+
+XII)
+hadoop fs -ls
+
+XIII)
+hadoop fs -du -s -h hadoop/retail
+
+XIV)
+hadoop fs -rm hadoop/retail/customers
+
+XV)
+hadoop fs -ls hadoop/retail/customers
+
+XVI)
+hadoop fs -rm hadoop/retail/*
+
+XVII)
+hadoop fs -expunge
+
+XVIII)
+hadoop fs -rm -r hadoop/retail
+
+XIX)
+hadoop fs -ls hadoop
+
+XX)
+named "/home/training/" to the hadoop directory you created in hdfs
+
+XXI)
+hadoop fs -cat hadoop/purchases.txt
+
+XXII)
+hadoop fs -copyToLocal hadoop/purchases.txt/home/training/data hdfs
+
+XXIII)
+hadoop fs -cp /user/training/*.txt/user/training/hadoop
+
+XXIV)
+hadoop fs -get hadoop/sample.txt/home/training//
+
+XXV)
+hadoop fs -tail hadoop/purchases.txt
+
+XXVI)
+use '-chmod' command to change permissions of file
+
+XXVII)
+use '-chown' command to change owner name and group name simultaneously
+hadoop fs -ls hadoop/purchases.txt
+
+XXVIII)
+sudo -u hdfs hadoop fs -chgrp training hadoop/purchases.txt
+
+XXIX)
+hadoop fs -mv  hadoop apache_hadoop
+
+XXX)
+use '-strep' command to change repliation factor of a file
+
+XXXI)
+use'-distcp' command to copy
+
+XXXII)
+hadoop fs -expunge
+sudo -u hdfs dfsadmin -safemode leave
+
+XXXIII)
+hadoop -fs

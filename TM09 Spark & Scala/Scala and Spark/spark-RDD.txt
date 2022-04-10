@@ -1,0 +1,23 @@
+I)
+val path="users/src/main/resource/realstate.txt"
+val df1= spark.read.text(path)
+df1.show()
+val.df2=spark.read.option("lineSep",",").text(path)
+df2.show()
+val.df3=spark.read.option("wholetext",true).text(path)
+df1.write.text("output")
+df1.write.option("compression","gzip").text("outpt_compressed")
+
+realstate.txt CONTAINS DATA :
+
+Property ID|Location|Price|Bedrooms|Bathrooms|size|Price so Ft|Status
+1461262|Arroyo Grande|795000|3|3|2371|365.3|Short Sale
+1478004|Paulo pablo|399000|4|3|2818|163.59|Short Sale
+1486551|Paulo Pablo|545000|4|3|3032|179.75|Short Sale
+1492832|Santa Bay|909000|4|4|3540|286.78|Short Sale
+1499102|Thomas County|109900|3|1|1249|98.99|Short Sale
+1500741|La Oceana|324900|3|3|1800|180.5|Short Sale
+1507396|Thomas County|192900|4|2|1603|120.34|Short Sale
+
+II)
+scala> val inputfile = sc.textFile(“realstate.txt”)

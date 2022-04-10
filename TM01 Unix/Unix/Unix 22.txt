@@ -1,0 +1,1 @@
+# tar cvf file.tar *.c ls -d (/-name a*-o -name k*/)

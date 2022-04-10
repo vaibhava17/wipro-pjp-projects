@@ -1,0 +1,58 @@
+I)
+DECLARE
+   Emp TABLE
+   Emp_tab%ROWTYPE;     
+   C = EMPNO.EMP_TALBE
+DBMS.OUTPUT.PUT('EMPLOYEE IS PRESENT')
+
+BEGIN
+   Get_emp_rec(7499, Emp_row);   -- call for Emp_tab# 7499
+   DBMS_OUTPUT.PUT(Emp.Ename || ' '                || Emp.Empno);
+IF EMPLOYEE=EMPNO
+THEN
+   DBMS_OUTPUT.PUT(' '           || EMP.ENAME );
+   DBMS_OUTPUT.PUT(' '           || EMP.SAL );
+   DBMS_OUTPUT.PUT(' '           || EMP.DEPTNO);
+   DBMS_OUTPUT.NEW_LINE;
+END IF;
+
+END;
+/
+
+II)
+DECLARE 
+   a number; 
+   b number; 
+   c number; 
+FUNCTION ADD NUMBER(x IN number, y IN number)  
+RETURN number 
+IS 
+    z number;
+BEGIN 
+   IF x > y THEN 
+      z:= x; 
+   ELSE 
+      Z:= y; 
+   END IF;  
+   RETURN z; 
+END;  
+BEGIN 
+   
+   a:= 10; 
+   b:= 20;  
+   c :=ADD NUMBER(A,B); 
+   dbms_output.put_line('ADDITION IS:  ' || c); 
+END; 
+/ 
+III)
+
+CREATE PROCEDURE Get_emp_rec (Emp_number  IN  Emp_TABLE.Empno%TYPE,
+                              Emp_ret     OUT Emp_TABLE%ROWTYPE) AS
+BEGIN
+   SELECT EMPNO, ENAME, HIREDATE, MGR, SAL , DEPT, COMM;
+
+      INTO Emp_TABLE1
+      FROM Emp_TABLE
+      WHERE EMPNO = Emp_number;
+END;
+/

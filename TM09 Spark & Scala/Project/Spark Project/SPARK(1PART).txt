@@ -1,0 +1,54 @@
+#READ ALL CSV FILE AND 
+
+val df = spark.read.csv("src/main/resources/movies.csv")
+    df.printSchema()
+
+val df = spark.read.csv("src/main/resources/ratings.csv")
+    df.printSchema()
+
+val df = spark.read.csv("src/main/resources/tags.csv")
+    df.printSchema()
+
+#WITH FUNNY TAG ADD MOVIE IN TEXT FILE
+
+val df_with_schema = spark.read.format("csv")
+      .option("header"=> "funny")
+      .schema(schema)
+      .load("src/main/resources/Tags.csv")
+df_with_schema.printSchema()
+df_with_schema.show(true)
+df.printSchema("src/main/resources/funnyMovies.txt")
+
+#TOP 5 MOIVES BASED ON RATING
+
+import org.apache.spark.sql.functions.{asc, desc}
+def movie_query (df: org.apache.spark.sql.DataFrame, stars: Seq[Double], user: Int ) : Unit = 
+{
+ if (stars.isEmpty)
+ {
+ println(s"All movies rated by user $user")
+ df.filter(df("userId") ===user).orderBy(desc("rating")).show(20, false)
+ }
+ else 
+ stars.foreach(starsNum =>{ 
+ println(s"All movies rated by user $user with $starsNum stars:")
+ df.filter(df("userId") === user).filter(df("rating")  starsNum).orderBy(asc("movieId")).show(7, false)})
+} 
+movie_query(df_full, Seq((4.0, 5.0), 1)
+
+#list of top 5 movie having genre="children" and rating>=3
+
+import org.apache.spark.sql.functions.{asc, desc}
+def movie_query (df: org.apache.spark.sql.DataFrame, stars: Seq[Double], user: Int ) : Unit = 
+{
+ if (stars.isEmpty)
+ {
+ println(s"All movies rated by user $user")
+ df.filter(df("genere") ===Children).orderBy(desc("rating")).show(20, false)
+ }
+ else 
+ stars.foreach(starsNum =>{ 
+ println(s"All movies rated by user $user with $starsNum stars:")
+ df.filter(df("userId") === user).filter(df("rating")>= 3).orderBy(asc("movieId")).show(7, false)})
+} 
+movie_query(df_full, Seq((3.0,4.0,5.0),Children)

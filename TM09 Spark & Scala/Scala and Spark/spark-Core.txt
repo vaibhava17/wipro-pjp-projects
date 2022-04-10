@@ -1,0 +1,49 @@
+I)
+spark>CREATE DATA.TEXT AND SAVE THAT DATA 
+numsradd=[10,20,20,30]
+distdata=sc.parallelsize(data)
+
+sala>val distFile=sc.textFile("data.txt")
+
+II)
+spark>const numsradd=[10,20,20,30]
+const map1 x =numsradd.map(x->x+10);
+console.log(map1);
+print("x")
+
+III)
+spark>const numsradd=[10,20,20,30]
+const map1 x =numsradd.map(x>20);
+console.log(map1);
+print("x")
+
+IV)
+scala> val inputfile = sc.textFile(“input.txt”)
+rdd =sc.parallelize(range(1000), 10)
+rdd.countAppox(1000, 1.0)
+
+V)
+import org.apache.spark.SparkContext
+import org.apache.spark.SparkConf
+
+object RDDdistinct {
+	def main(args: Array[String]) {
+
+		val conf = new SparkConf().setAppName("Spark RDD Distinct Example").setMaster("local[1]")
+
+				val sc = new SparkContext(conf)
+
+				var rdd = sc.parallelize(Seq("Learn", "Apache", "Spark", "Learn", "Spark", "RDD", "Functions"));
+				var rddDist = rdd.distinct()
+				rddDist.collect().foreach(println)
+				rddDist.saveAsTextFile("out.txt")
+
+				sc.stop()
+	}
+}
+
+VI)
+scala> val data = sc.parallelize(Seq(("C",3),("A",1),("B",4),("A",2),("B",5)))  
+
+VII)
+scala> val data = sc.parallelize(Array(("C",3),("A",1),("B",4),("A",2),("B",5)))  

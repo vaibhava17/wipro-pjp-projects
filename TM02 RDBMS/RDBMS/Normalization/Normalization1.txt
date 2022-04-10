@@ -1,0 +1,12 @@
+EMP table has composite primary key EMPNO,DEPTNO.The non-key attribute is LOC.In this case LOC only depends on DEPTNO, which is a part of  primary key.
+
+So,To bring table in 2NF , we need to break the table into two parts where the following conditions should follow:
+
+-->First realtion in 1NF.
+
+-->No partial dependency in the relation.
+
+As followed:-
+
+1) EMP Table: EMPNO,ENAME,SAL,DEPTNO
+2) DEPT TABLE: DEPTNO,DNAME,LOC

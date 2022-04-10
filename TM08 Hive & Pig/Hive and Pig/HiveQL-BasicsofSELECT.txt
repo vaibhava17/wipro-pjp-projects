@@ -1,0 +1,5 @@
+I)
+hive> SELECT * FROM employee WHERE salary>=25000;
+
+II)
+hive> SELECT Dept,sum(salary) FROM employee GROUP BY DEPT;

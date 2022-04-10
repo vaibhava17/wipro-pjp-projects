@@ -1,0 +1,7 @@
+1. Structure- DESC DEPT;
+   Contents- SELECT * FROM DEPT;
+
+2. Structure- DESC EMP;
+   Contents- SELECT * FROM EMP;
+
+3. SELECT Ename,Deptno FROM EMP WHERE Empno=7788;

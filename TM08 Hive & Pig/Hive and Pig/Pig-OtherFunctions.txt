@@ -1,0 +1,5 @@
+I)
+grunt> upper_data = FOREACH Order_details GENERATE(itemid), UPPER(itemid);
+
+II)
+grunt> getmonth_data = FOREACH todate_data generate(date_time), GetMonth(date_time);

@@ -1,0 +1,3 @@
+No, the inode of test123 and test123-sl is different
+as the softlink act as apointer to the file and hence
+has a unique inode for itself.

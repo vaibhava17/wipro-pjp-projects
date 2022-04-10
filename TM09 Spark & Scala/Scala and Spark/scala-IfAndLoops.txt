@@ -1,0 +1,117 @@
+I)
+
+public static void main(String[]args) {
+
+   Scanner scan=new Scanner(System.in);
+   double a = 0;
+   double max = 0;
+   double min = 0;
+
+   System.out.print("Enter ten floating points: \n");
+
+   for(a=0; a <4; a++) {
+      a=scan.nextDouble();
+
+       if(a == 0) { 
+           min=a;
+           max=a; 
+       } 
+       else if(a < min) {
+           min=a; 
+       }
+       else if (a > max){ 
+           max=a; 
+       }
+   }
+   System.out.println("Minimum value: " +min);
+   System.out.println("Maximum value: " +max);
+}
+
+II)
+
+object Scala_List
+{
+  def main(args: Array[String]): Unit = 
+ {
+   val nums = List(30,31,32,33,34,35,36,37,38,39,40)
+   println("Original list:")
+   println(nums)   
+   val even_nums = nums.filter(_ % 2 ==0) 
+   println("Even number of the said list:")
+   println(even_nums)
+   val odd_nums = nums.filter(_ % 2 != 0) 
+   println("Odd number of the said list:")
+   println(odd_nums)   
+  }
+}
+
+III)
+
+object prb1 {
+  def main(args: Array[String]) {
+    val retval = for{ a <- 20 to 40
+                      if a % 2 == 0 || a % 3 == 0
+    } yield a
+    val sum = retval.reduceLeft[Int](_+_)
+    println("The sum of all multiples of 2 and 3 between 20 to 40 is " + sum)
+  }
+}
+
+IV)
+
+scala> def isPrime(number: Int) =
+     number > 1 && !(2 to number - 1).exists(e => e % number == 0)
+isPrime: (number: Int)Boolean
+
+scala> def generatePrimes(starting: Int): Stream[Int] = {
+      if(isPrime(starting))
+      starting #:: generatePrimes(starting + 1)
+       else
+      generatePrimes(starting + 1)
+     }
+generatePrimes: (starting: Int)Stream[Int]
+
+scala> generatePrimes(2).take(100).toList
+res12: List[Int] = List(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100)
+
+V)
+
+
+object Scala_List {  
+  def main(args: Array[String]): Unit = {
+     val nums = List(2,3,4,5,6,7,8,9,10)
+     println("Original List")
+     println(nums)
+     println("Reversed the said list:")
+     println("Using reverse() function:")
+     println(nums.reverse)
+     println("Using for loop:")
+     for(n<-nums.reverse)  
+        {  
+          print(n)  
+          print(" ")
+        }  
+     }
+}
+
+VI)
+
+object Sample{  
+    def main(args:Array[String]){  
+        var num:Int    = 0;
+        var res:Double = 0;
+        
+        print("Enter number between 1 to 10: ")
+        num=scala.io.StdIn.readInt()
+        
+        res = scala.math.pow(num)
+        println("The square is: "+res);
+    }  
+}
+
+
+def cube(x: Int): Int = x * x * x
+
+def sumCubes(a: Int, b: Int): Int =
+  if (a > b) 0 else cube(a) + sumCubes(a + 1, b)
+  

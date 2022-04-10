@@ -1,0 +1,23 @@
+#LOAD DATA
+grunt> customers = LOAD 'NYSE_daily.txt' USING PigStorage(',');
+
+grunt> NYSE_daily = LOAD 'hdfs://localhost:9000/pig_data/NYSE_daily.txt' USING PigStorage(',')
+   as (Ticker string, Date Date,
+Open Decimal(10,2), Open Decimal(10,2), High Deciaml(10,2), Low Decimal(10,2)
+Close Decimal(10,2), Volume Int, AdjClose Decimal(10,2));
+
+#LOAD AVERAGE VOLUME
+grunt> customers = LOAD 'Average_Volume FROM'  'NYSE_daily.txt' USING PigStorage(',');
+
+#FILTER VOLUME DATA
+highVolume = FILTER NYSE_daily.txt BY Volume
+WHERE
+Volume>=Avgvolume;
+grunt> Dump highVolume;
+
+
+#SAVE OUTPUT TO HIGHVOULME DIRECTORY IN HDFS
+$cd /$Hadoop_Home/bin/ 
+$ hdfs dfs -mkdir hdfs://localhost:9000/Pig_Data 
+$ cd $HADOOP_HOME/bin
+$ hdfs dfs -cat hdfs://localhost:9000/pig_data/highVolume dir/NYSE_daily.txt
